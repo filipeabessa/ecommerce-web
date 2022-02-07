@@ -1,1 +1,14 @@
-<p>products-list works!</p>
+<mat-card class="products-list-container">
+  <mat-card-content class="content">
+    <mat-form-field class="search-input">
+      <mat-label>Buscar produto</mat-label>
+      <input matInput type="text" />
+    </mat-form-field>
+    <div class="products-list">
+      <app-product-card
+        *ngFor="let product of products"
+        [product]="product"
+      ></app-product-card>
+    </div>
+  </mat-card-content>
+</mat-card>

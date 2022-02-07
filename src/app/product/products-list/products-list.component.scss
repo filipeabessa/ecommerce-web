@@ -1,0 +1,17 @@
+.products-list-container {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  padding: 100px;
+
+  > .content {
+    > .search-input {
+      width: 300px;
+    }
+
+    > .products-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}

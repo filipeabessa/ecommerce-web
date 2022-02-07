@@ -10,6 +10,22 @@ export class ProductsListComponent {
   @Input() products: Array<Product>;
 
   constructor() {
-    this.products = [];
+    this.products = [
+      {
+        title: 'Bola',
+        price: 10,
+        content: 'Bola de futebol',
+      },
+      {
+        title: 'Bola',
+        price: 10,
+        content: 'Bola de futebol',
+      },
+      {
+        title: 'Bola',
+        price: 10,
+        content: 'Bola de futebol',
+      },
+    ];
   }
 }
