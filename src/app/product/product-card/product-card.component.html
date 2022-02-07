@@ -1,1 +1,20 @@
-<p>product-card works!</p>
+<mat-card class="product-card-container">
+  <mat-card-content class="product-content">
+    <img
+      src="assets/images/product_image_default.png"
+      alt="Product"
+      width="300px"
+      height="300px"
+      class="product-image"
+    />
+
+    <div class="product-details">
+      <h3 class="product-name">{{ product.name }}</h3>
+      <p class="product-description">{{ product.content }}</p>
+      <p class="product-price">Por: {{ product.price }}</p>
+    </div>
+    <button mat-raised-button color="primary" class="product-button">
+      Comprar
+    </button>
+  </mat-card-content>
+</mat-card>
