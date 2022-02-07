@@ -26,6 +26,11 @@ export class ProductsListComponent {
         price: 10,
         content: 'Bola de futebol',
       },
+      {
+        title: 'Bola',
+        price: 10,
+        content: 'Bola de futebol',
+      },
     ];
   }
 }
