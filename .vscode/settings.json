@@ -1,3 +1,8 @@
 {
-  "conventionalCommits.scopes": ["setup", "products"]
+  "conventionalCommits.scopes": [
+    "setup",
+    "products",
+    "layout",
+    "list_products_layout"
+  ]
 }

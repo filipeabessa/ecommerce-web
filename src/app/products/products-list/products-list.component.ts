@@ -1,4 +1,4 @@
-import { Product } from './../../../types/index';
+import { Product } from '../../../types/index';
 import { Component, Input } from '@angular/core';
 
 @Component({
