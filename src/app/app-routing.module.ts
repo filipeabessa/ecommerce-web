@@ -1,11 +1,11 @@
-import { ProductDetailCardComponent } from './products/product-detail-card/product-detail-card.component';
+import { ProductDetailLayoutComponent } from './products/layouts/product-detail-layout/product-detail-layout.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: 'products', component: ProductsListComponent },
-  { path: 'product', component: ProductDetailCardComponent },
+  { path: 'product', component: ProductDetailLayoutComponent },
 ];
 
 @NgModule({
