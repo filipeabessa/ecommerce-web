@@ -1,3 +1,10 @@
 <div>
-  <app-product-detail-card></app-product-detail-card>
+  <app-product-detail-card
+    *ngIf="product$ | async as product; else loading"
+    [product]="product"
+  ></app-product-detail-card>
+
+  <ng-template #loading>
+    <p>carregando</p>
+  </ng-template>
 </div>

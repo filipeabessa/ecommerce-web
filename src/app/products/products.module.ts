@@ -1,3 +1,4 @@
+import { ProductService } from './api/product.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -30,5 +31,6 @@ import { ProductDetailLayoutComponent } from './layouts/product-detail-layout/pr
     ProductDetailCardComponent,
     ProductDetailLayoutComponent,
   ],
+  providers: [ProductService],
 })
 export class ProductModule {}
