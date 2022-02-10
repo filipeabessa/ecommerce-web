@@ -12,6 +12,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductDetailCardComponent } from './product-detail-card/product-detail-card.component';
 import { ProductDetailLayoutComponent } from './layouts/product-detail-layout/product-detail-layout.component';
+import { ProductEditCardComponent } from './product-edit-card/product-edit-card.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ProductDetailLayoutComponent } from './layouts/product-detail-layout/pr
     ProductsListComponent,
     ProductDetailCardComponent,
     ProductDetailLayoutComponent,
+    ProductEditCardComponent,
   ],
   imports: [
     CommonModule,

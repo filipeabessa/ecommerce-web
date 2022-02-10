@@ -1,11 +1,14 @@
-<div>
-  <app-product-detail-card
-    *ngIf="product; else loading"
-    [product]="product"
-    (deleteProduct)="deleteProduct()"
-  ></app-product-detail-card>
+<mat-card class="layout-container">
+  <div class="product-details-edit-wrapper" *ngIf="product; else loading">
+    <app-product-detail-card
+      [product]="product"
+      (deleteProduct)="deleteProduct()"
+    ></app-product-detail-card>
+
+    <app-product-edit-card class="edit-card"></app-product-edit-card>
+  </div>
 
   <ng-template #loading>
     <p>carregando</p>
   </ng-template>
-</div>
+</mat-card>
