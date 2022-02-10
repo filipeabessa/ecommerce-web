@@ -28,4 +28,11 @@ export class ProductService {
   retrieveProduct(id: number): Observable<Product> {
     return this.httpClient.get<Product>(`${this.apiUrl}/products/${id}/`, {});
   }
+
+  deleteProduct(id: number): Observable<Product> {
+    return this.httpClient.delete<Product>(
+      `${this.apiUrl}/products/${id}/`,
+      {}
+    );
+  }
 }

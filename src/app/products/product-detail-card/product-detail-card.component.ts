@@ -1,5 +1,5 @@
 import { Product } from './../../../types/index';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-product-detail-card',
@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ProductDetailCardComponent implements OnInit {
   @Input() product: Product;
+  @Output() deleteProduct = new EventEmitter();
 
   constructor() {
     this.product = {
@@ -18,4 +19,8 @@ export class ProductDetailCardComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  onDeleteProduct() {
+    this.deleteProduct.emit();
+  }
 }

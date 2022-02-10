@@ -1,8 +1,6 @@
 import { Product } from './../../../../types/index';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../api/product.service';
 
 @Component({
@@ -12,7 +10,8 @@ import { ProductService } from '../../api/product.service';
   providers: [ProductService],
 })
 export class ProductDetailLayoutComponent implements OnInit {
-  product$: Observable<Product>;
+  product: Product;
+  productId = Number(this.route.snapshot.paramMap.get('id'));
 
   constructor(
     public router: Router,
@@ -21,10 +20,27 @@ export class ProductDetailLayoutComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.product$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.productService.retrieveProduct(Number(params.get('id')))
-      )
+    if (this.productId) {
+      this.productService.retrieveProduct(this.productId).subscribe(
+        (product) => {
+          this.product = product;
+        },
+        (error) => {
+          this.router.navigate(['/404']);
+          console.log(error);
+        }
+      );
+    }
+  }
+
+  deleteProduct() {
+    this.productService.deleteProduct(this.productId).subscribe(
+      (product) => {
+        this.router.navigate(['/products']);
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   }
 }

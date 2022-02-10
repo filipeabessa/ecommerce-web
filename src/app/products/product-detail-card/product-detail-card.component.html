@@ -1,6 +1,11 @@
 <div class="product-card-container">
   <mat-card-content class="product-content">
-    <button mat-mini-fab color="basic" class="delete-button">
+    <button
+      mat-mini-fab
+      color="basic"
+      class="delete-button"
+      (click)="onDeleteProduct()"
+    >
       <mat-icon class="trash-icon">delete</mat-icon>
     </button>
     <img
