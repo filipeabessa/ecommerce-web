@@ -2,6 +2,7 @@ import { ProductService } from './api/product.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,6 +30,7 @@ import { ProductEditCardComponent } from './product-edit-card/product-edit-card.
     MatInputModule,
     MatIconModule,
     RouterModule,
+    ReactiveFormsModule,
   ],
   exports: [
     ProductCardComponent,

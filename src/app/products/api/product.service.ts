@@ -8,6 +8,12 @@ interface ProductsQueryParams {
   name: string;
 }
 
+interface ProductEditParams {
+  title?: string;
+  content?: string;
+  price?: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -27,6 +33,13 @@ export class ProductService {
 
   retrieveProduct(id: number): Observable<Product> {
     return this.httpClient.get<Product>(`${this.apiUrl}/products/${id}/`, {});
+  }
+
+  editProduct(id: number, editParams: ProductEditParams): Observable<Product> {
+    return this.httpClient.patch<Product>(
+      `${this.apiUrl}/products/${id}/`,
+      editParams
+    );
   }
 
   deleteProduct(id: number): Observable<Product> {
