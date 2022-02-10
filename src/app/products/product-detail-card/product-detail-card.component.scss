@@ -39,28 +39,16 @@
         margin: 0px;
       }
 
-      > .product-description {
+      > .product-content {
         font-size: 20px;
         margin: 0px;
-        margin-top: 20px;
+        margin: 40px 0px;
       }
 
-      > .bottom-details {
-        margin-top: auto;
-        width: 100%;
-
-        > .product-price {
-          font-size: 30px;
-          margin: 0px;
-          margin-bottom: 20px;
-        }
-
-        .edit-button {
-          background: #6954b7;
-          width: 100%;
-          color: #fff;
-          margin-bottom: 40px;
-        }
+      > .product-price {
+        font-size: 30px;
+        margin: 0px;
+        margin-bottom: 20px;
       }
     }
   }
