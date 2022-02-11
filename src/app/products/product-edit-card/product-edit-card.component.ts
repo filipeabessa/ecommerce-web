@@ -22,16 +22,23 @@ export class ProductEditCardComponent implements OnInit {
   product: Product;
 
   editProductForm = new FormGroup({
-    title: new FormControl(''),
-    content: new FormControl(''),
-    price: new FormControl(0),
+    title: new FormControl(null),
+    content: new FormControl(null),
+    price: new FormControl(null),
   });
 
   onSubmit() {
+    const { title, content, price } = this.editProductForm.value;
+    const productEditValues: Product = {};
+    if (title) productEditValues.title = title;
+    if (content) productEditValues.content = content;
+    if (price) productEditValues.price = price;
+
     this.productService
-      .editProduct(this.productId, this.editProductForm.value)
+      .editProduct(this.productId, productEditValues)
       .subscribe(
         (product) => {
+          console.log(product);
           this.product = product;
         },
         (error) => {
