@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { AppReducer } from './store/app.reducer';
 
 import { ProductModule } from './products/products.module';
 import { SharedModule } from './shared/shared.module';
@@ -20,6 +22,9 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     HttpClientModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({
+      app: AppReducer,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

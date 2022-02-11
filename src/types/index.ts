@@ -5,3 +5,8 @@ export interface Product {
   creation?: Date;
   content?: string;
 }
+export interface ProductEditParams {
+  title?: string;
+  content?: string;
+  price?: number;
+}
