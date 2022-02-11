@@ -1,7 +1,4 @@
-import {
-  getProductsRequest,
-  retrieveProductRequest,
-} from './../../store/app.actions';
+import { getProductsRequest } from './../../store/app.actions';
 import { AppState, getProducts } from './../../store/app.reducer';
 import { Product } from 'src/types';
 import { Component, OnInit } from '@angular/core';
