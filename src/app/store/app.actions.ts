@@ -20,7 +20,7 @@ export const retrieveProductError = createAction(
 
 export const getProductsRequest = createAction(
   `${PREFIX} Get Products`,
-  props<{ params: { price?: number; content?: string } }>()
+  props<{ price?: number; content?: string }>()
 );
 export const getProductsSuccess = createAction(
   `${PREFIX} Set Products Success`,

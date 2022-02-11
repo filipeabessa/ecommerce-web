@@ -1,11 +1,11 @@
 import { Observable } from 'rxjs';
 import { Product } from './../../../types/index';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 interface ProductsQueryParams {
-  price: number;
-  name: string;
+  price?: number;
+  title?: string;
 }
 
 interface ProductEditParams {
@@ -22,12 +22,17 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getProducts({ price, name }: ProductsQueryParams): Observable<Product[]> {
+  getProducts(productParams: ProductsQueryParams): Observable<Product[]> {
+    let params = new HttpParams();
+    if (productParams?.price !== undefined) {
+      params.set('price', productParams.price.toString());
+    }
+    if (productParams?.title !== undefined) {
+      params.set('title', productParams.title.toString());
+    }
+
     return this.httpClient.get<Product[]>(`${this.apiUrl}/products`, {
-      params: {
-        price,
-        name,
-      },
+      params,
     });
   }
 

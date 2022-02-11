@@ -2,8 +2,9 @@ export interface Product {
   id?: number;
   title?: string;
   price?: number;
-  creation?: Date;
+  creation?: string;
   content?: string;
+  responsible?: number;
 }
 export interface ProductEditParams {
   title?: string;

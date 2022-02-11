@@ -1,36 +1,32 @@
-import { Product } from '../../../types/index';
-import { Component, Input } from '@angular/core';
+import {
+  getProductsRequest,
+  retrieveProductRequest,
+} from './../../store/app.actions';
+import { AppState, getProducts } from './../../store/app.reducer';
+import { Product } from 'src/types';
+import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss'],
 })
-export class ProductsListComponent {
-  @Input() products: Array<Product>;
+export class ProductsListComponent implements OnInit {
+  products$: Observable<Array<Product>>;
+  getProductsSubscription: Subscription;
 
-  constructor() {
-    this.products = [
-      {
-        title: 'Bola',
-        price: 10,
-        content: 'Bola de futebol',
-      },
-      {
-        title: 'Bola',
-        price: 10,
-        content: 'Bola de futebol',
-      },
-      {
-        title: 'Bola',
-        price: 10,
-        content: 'Bola de futebol',
-      },
-      {
-        title: 'Bola',
-        price: 10,
-        content: 'Bola de futebol',
-      },
-    ];
+  constructor(private appStore: Store<AppState>) {}
+
+  ngOnInit() {
+    this.products$ = this.appStore.pipe(select(getProducts));
+    this.appStore.dispatch(getProductsRequest({}));
+
+    this.getProductsSubscription = this.products$.subscribe();
+  }
+
+  ngOnDestroy() {
+    this.getProductsSubscription.unsubscribe();
   }
 }

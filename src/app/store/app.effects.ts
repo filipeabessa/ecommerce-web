@@ -15,7 +15,7 @@ import {
   deleteProductSuccess,
   deleteProductError,
 } from './app.actions';
-import { map, catchError, exhaustMap } from 'rxjs/operators';
+import { map, catchError, exhaustMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Injectable()
