@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Product } from './../../../types/index';
+import { ProductModel } from '../models/product.models';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -23,7 +23,7 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getProducts(productParams: ProductsQueryParams): Observable<Product[]> {
+  getProducts(productParams: ProductsQueryParams): Observable<ProductModel[]> {
     let params = new HttpParams();
     if (productParams?.price !== undefined) {
       params.set('price', productParams.price.toString());
@@ -32,24 +32,30 @@ export class ProductService {
       params.set('title', productParams.title.toString());
     }
 
-    return this.httpClient.get<Product[]>(`${this.apiUrl}/products`, {
+    return this.httpClient.get<ProductModel[]>(`${this.apiUrl}/products`, {
       params,
     });
   }
 
-  retrieveProduct(id: number): Observable<Product> {
-    return this.httpClient.get<Product>(`${this.apiUrl}/products/${id}/`, {});
+  retrieveProduct(id: number): Observable<ProductModel> {
+    return this.httpClient.get<ProductModel>(
+      `${this.apiUrl}/products/${id}/`,
+      {}
+    );
   }
 
-  editProduct(id: number, editParams: ProductEditParams): Observable<Product> {
-    return this.httpClient.patch<Product>(
+  editProduct(
+    id: number,
+    editParams: ProductEditParams
+  ): Observable<ProductModel> {
+    return this.httpClient.patch<ProductModel>(
       `${this.apiUrl}/products/${id}/`,
       editParams
     );
   }
 
-  deleteProduct(id: number): Observable<Product> {
-    return this.httpClient.delete<Product>(
+  deleteProduct(id: number): Observable<ProductModel> {
+    return this.httpClient.delete<ProductModel>(
       `${this.apiUrl}/products/${id}/`,
       {}
     );
