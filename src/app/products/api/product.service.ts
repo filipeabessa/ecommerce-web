@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { Product } from './../../../types/index';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 interface ProductsQueryParams {
   price?: number;
@@ -18,7 +19,7 @@ interface ProductEditParams {
   providedIn: 'root',
 })
 export class ProductService {
-  apiUrl = 'http://localhost:8000/api/v1';
+  apiUrl = `${environment.API}`;
 
   constructor(private httpClient: HttpClient) {}
 
