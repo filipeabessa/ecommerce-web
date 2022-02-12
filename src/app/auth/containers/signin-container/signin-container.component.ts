@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { signInRequest } from '../store/auth.actions';
-import { AuthState } from '../store/auth.reducer';
+import { signInRequest } from '../../store/auth.actions';
+import { AuthState } from '../../store/auth.reducer';
 
 @Component({
   selector: 'app-signin-container',

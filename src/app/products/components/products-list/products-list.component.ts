@@ -1,5 +1,5 @@
-import { getProductsRequest } from './../../store/app.actions';
-import { AppState, getProducts } from './../../store/app.reducer';
+import { getProductsRequest } from '../../../store/app.actions';
+import { AppState, getProducts } from '../../../store/app.reducer';
 import { Product } from 'src/types';
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';

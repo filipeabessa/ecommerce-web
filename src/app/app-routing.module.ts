@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ProductDetailLayoutComponent } from './products/layouts/product-detail-layout/product-detail-layout.component';
-import { ProductsListComponent } from './products/products-list/products-list.component';
+import { ProductDetailContainerComponent } from './products/containers/product-detail-container/product-detail-container.component';
+import { ProductsListComponent } from './products/components/products-list/products-list.component';
 import { PagNotFoundComponent } from './shared/pag-not-found/pag-not-found.component';
-import { SigninContainerComponent } from './auth/signin-container/signin-container.component';
+import { SigninContainerComponent } from './auth/containers/signin-container/signin-container.component';
 
 const routes: Routes = [
   {
@@ -12,7 +12,7 @@ const routes: Routes = [
     component: ProductsListComponent,
   },
   { path: 'signin', component: SigninContainerComponent },
-  { path: 'products/:id', component: ProductDetailLayoutComponent },
+  { path: 'products/:id', component: ProductDetailContainerComponent },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
   { path: '**', component: PagNotFoundComponent },
 ];

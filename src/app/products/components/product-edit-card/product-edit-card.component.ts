@@ -1,6 +1,6 @@
-import { Product } from './../../../types/index';
+import { Product } from '../../../../types/index';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from './../api/product.service';
+import { ProductService } from '../../api/product.service';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 

@@ -13,18 +13,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 
-import { ProductCardComponent } from './product-card/product-card.component';
-import { ProductsListComponent } from './products-list/products-list.component';
-import { ProductDetailCardComponent } from './product-detail-card/product-detail-card.component';
-import { ProductDetailLayoutComponent } from './layouts/product-detail-layout/product-detail-layout.component';
-import { ProductEditCardComponent } from './product-edit-card/product-edit-card.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductsListComponent } from './components/products-list/products-list.component';
+import { ProductDetailCardComponent } from './components/product-detail-card/product-detail-card.component';
+import { ProductDetailContainerComponent } from './containers/product-detail-container/product-detail-container.component';
+import { ProductEditCardComponent } from './components/product-edit-card/product-edit-card.component';
 
 @NgModule({
   declarations: [
     ProductCardComponent,
     ProductsListComponent,
     ProductDetailCardComponent,
-    ProductDetailLayoutComponent,
+    ProductDetailContainerComponent,
     ProductEditCardComponent,
   ],
   imports: [
@@ -44,7 +44,7 @@ import { ProductEditCardComponent } from './product-edit-card/product-edit-card.
     ProductCardComponent,
     ProductsListComponent,
     ProductDetailCardComponent,
-    ProductDetailLayoutComponent,
+    ProductDetailContainerComponent,
   ],
   providers: [ProductService],
 })

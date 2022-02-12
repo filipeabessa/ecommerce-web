@@ -4,6 +4,7 @@
     "products",
     "shared_module",
     "store",
-    "authentication"
+    "authentication",
+    "project_structure"
   ]
 }

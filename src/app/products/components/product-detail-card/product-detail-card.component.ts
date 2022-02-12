@@ -1,4 +1,4 @@
-import { Product } from './../../../types/index';
+import { Product } from '../../../../types/index';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({

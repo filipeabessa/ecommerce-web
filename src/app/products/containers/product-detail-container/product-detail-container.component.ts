@@ -1,4 +1,4 @@
-import { Product } from './../../../../types/index';
+import { Product } from '../../../../types/index';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../api/product.service';
@@ -7,12 +7,12 @@ import { Store } from '@ngrx/store';
 import { deleteProductRequest } from '../../../store/app.actions';
 
 @Component({
-  selector: 'app-product-detail-layout',
-  templateUrl: './product-detail-layout.component.html',
-  styleUrls: ['./product-detail-layout.component.scss'],
+  selector: 'app-product-detail-container',
+  templateUrl: './product-detail-container.component.html',
+  styleUrls: ['./product-detail-container.component.scss'],
   providers: [ProductService],
 })
-export class ProductDetailLayoutComponent implements OnInit {
+export class ProductDetailContainerComponent implements OnInit {
   product: Product;
   productId: number = Number(this.route.snapshot.paramMap.get('id'));
 

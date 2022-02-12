@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 
-import { SigninContainerComponent } from './signin-container/signin-container.component';
+import { SigninContainerComponent } from './containers/signin-container/signin-container.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromAuth from './store/auth.reducer';
 import { AuthService } from './api/auth.service';
