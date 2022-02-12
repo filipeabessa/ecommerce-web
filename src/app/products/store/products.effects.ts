@@ -1,4 +1,4 @@
-import { ProductService } from './../products/api/product.service';
+import { ProductService } from '../api/product.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
@@ -14,12 +14,12 @@ import {
   deleteProductRequest,
   deleteProductSuccess,
   deleteProductError,
-} from './app.actions';
+} from './products.actions';
 import { map, catchError, exhaustMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Injectable()
-export class AppEffects {
+export class ProductsEffects {
   constructor(
     private actions$: Actions,
     private productService: ProductService

@@ -1,5 +1,6 @@
 import { Product } from 'src/types';
 import {
+  Action,
   createFeatureSelector,
   createReducer,
   createSelector,
@@ -18,16 +19,18 @@ import {
   retrieveProductRequest,
   retrieveProductError,
   retrieveProductSuccess,
-} from './app.actions';
+} from './products.actions';
 import {
   FailedRequest,
   InProgressRequest,
   NotAskedRequest,
   RequestState,
   SuccessfulRequest,
-} from '../models/request-state.model';
+} from '../../models/request-state.model';
 
-export interface AppState {
+export const ProductsReducerFeatureKey = 'products';
+
+export interface ProductsState {
   products: Product[];
   product: Product | null;
   requests: {
@@ -38,7 +41,7 @@ export interface AppState {
   };
 }
 
-const initialState: AppState = {
+const initialState: ProductsState = {
   product: null,
   products: [],
   requests: {
@@ -49,7 +52,7 @@ const initialState: AppState = {
   },
 };
 
-const _appReducer = createReducer(
+const productsReducer = createReducer(
   initialState,
   on(retrieveProductRequest, (state) => ({
     ...state,
@@ -141,32 +144,37 @@ const _appReducer = createReducer(
     },
   }))
 );
-export function AppReducer(state: any, action: any) {
-  return _appReducer(state, action);
-}
 
-export const getAppState = createFeatureSelector<AppState>('app');
+export const getProductsState =
+  createFeatureSelector<ProductsState>('Products');
 export const retrieveProduct = createSelector(
-  getAppState,
-  (state: AppState) => state.product
+  getProductsState,
+  (state: ProductsState) => state.product
 );
 export const retrieveProductRequestState = createSelector(
-  getAppState,
-  (state: AppState) => state.requests.retrieveProduct
+  getProductsState,
+  (state: ProductsState) => state.requests.retrieveProduct
 );
 export const getProducts = createSelector(
-  getAppState,
-  (state: AppState) => state.products
+  getProductsState,
+  (state: ProductsState) => state.products
 );
 export const getProductsRequestState = createSelector(
-  getAppState,
-  (state: AppState) => state.requests.getProducts
+  getProductsState,
+  (state: ProductsState) => state.requests.getProducts
 );
 export const editProductRequestState = createSelector(
-  getAppState,
-  (state: AppState) => state.requests.editProduct
+  getProductsState,
+  (state: ProductsState) => state.requests.editProduct
 );
 export const deleteProductRequestState = createSelector(
-  getAppState,
-  (state: AppState) => state.requests.deleteProduct
+  getProductsState,
+  (state: ProductsState) => state.requests.deleteProduct
 );
+
+export function reducer(
+  state: ProductsState | undefined,
+  action: Action
+): ProductsState {
+  return productsReducer(state, action);
+}

@@ -1,4 +1,4 @@
-import { ProductEditParams } from '../../types/index';
+import { ProductEditParams } from '../models/product.models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 import { Product } from 'src/types';

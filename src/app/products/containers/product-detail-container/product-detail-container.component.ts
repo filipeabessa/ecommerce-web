@@ -2,9 +2,9 @@ import { Product } from '../../../../types/index';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../api/product.service';
-import { AppState } from 'src/app/store/app.reducer';
 import { Store } from '@ngrx/store';
-import { deleteProductRequest } from '../../../store/app.actions';
+import { deleteProductRequest } from '../../store/products.actions';
+import { ProductsState } from '../../store/products.reducer';
 
 @Component({
   selector: 'app-product-detail-container',
@@ -20,7 +20,7 @@ export class ProductDetailContainerComponent implements OnInit {
     public router: Router,
     private route: ActivatedRoute,
     private productService: ProductService,
-    private appStore: Store<AppState>
+    private productsStore: Store<ProductsState>
   ) {}
 
   ngOnInit() {
@@ -38,6 +38,6 @@ export class ProductDetailContainerComponent implements OnInit {
   }
 
   deleteProduct() {
-    this.appStore.dispatch(deleteProductRequest({ id: this.productId }));
+    this.productsStore.dispatch(deleteProductRequest({ id: this.productId }));
   }
 }

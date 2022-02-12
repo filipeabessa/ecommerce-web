@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { StoreModule } from '@ngrx/store';
-import { AppReducer } from '../store/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from '../store/app.effects';
+import * as fromProductsReducer from './store/products.reducer';
+import { ProductsEffects } from './store/products.effects';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -35,10 +36,12 @@ import { ProductEditCardComponent } from './components/product-edit-card/product
     MatIconModule,
     RouterModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({
-      app: AppReducer,
-    }),
-    EffectsModule.forRoot([AppEffects]),
+    ReactiveFormsModule,
+    StoreModule.forFeature(
+      fromProductsReducer.ProductsReducerFeatureKey,
+      fromProductsReducer.reducer
+    ),
+    EffectsModule.forFeature([ProductsEffects]),
   ],
   exports: [
     ProductCardComponent,
