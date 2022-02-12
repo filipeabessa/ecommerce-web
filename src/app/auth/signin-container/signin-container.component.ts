@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { signInRequest } from '../store/auth.actions';
+import { AuthState } from '../store/auth.reducer';
 
 @Component({
   selector: 'app-signin-container',
@@ -12,11 +15,12 @@ export class SigninContainerComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  onSignIn() {
-    console.log(this.signInForm.value);
-  }
+  // constructor(private authStore: Store<AuthState>) {}
 
-  constructor() {}
+  onSignIn() {
+    // const signInParams = this.signInForm.value;
+    // this.authStore.dispatch(signInRequest(signInParams));
+  }
 
   ngOnInit(): void {}
 }

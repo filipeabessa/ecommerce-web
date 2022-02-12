@@ -14,6 +14,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { ProductModule } from './products/products.module';
 import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
 import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { environment } from 'src/environments/environment';
     BrowserAnimationsModule,
     ProductModule,
     SharedModule,
+    AuthModule,
     HttpClientModule,
     ReactiveFormsModule,
     StoreModule.forRoot({
