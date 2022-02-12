@@ -1,3 +1,9 @@
 {
-  "conventionalCommits.scopes": ["setup", "products", "shared_module", "store"]
+  "conventionalCommits.scopes": [
+    "setup",
+    "products",
+    "shared_module",
+    "store",
+    "authentication"
+  ]
 }
