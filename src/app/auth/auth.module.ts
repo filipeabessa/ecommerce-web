@@ -12,6 +12,8 @@ import { SigninContainerComponent } from './containers/signin-container/signin-c
 import { StoreModule } from '@ngrx/store';
 import * as fromAuth from './store/auth.reducer';
 import { AuthService } from './api/auth.service';
+import { AuthEffects } from './store/auth.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [SigninContainerComponent],
@@ -23,9 +25,8 @@ import { AuthService } from './api/auth.service';
     MatIconModule,
     ReactiveFormsModule,
     RouterModule,
-    // StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducers, {
-    //   metaReducers: fromAuth.metaReducers,
-    // }),
+    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
+    EffectsModule.forFeature([AuthEffects]),
   ],
   exports: [SigninContainerComponent],
   providers: [AuthService],
