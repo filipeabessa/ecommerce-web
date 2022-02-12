@@ -14,7 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 
 import { ProductCardComponent } from './components/product-card/product-card.component';
-import { ProductsListComponent } from './components/products-list/products-list.component';
+import { ProductsListContainerComponent } from './containers/products-list-container/products-list-container.component';
 import { ProductDetailCardComponent } from './components/product-detail-card/product-detail-card.component';
 import { ProductDetailContainerComponent } from './containers/product-detail-container/product-detail-container.component';
 import { ProductEditCardComponent } from './components/product-edit-card/product-edit-card.component';
@@ -22,7 +22,7 @@ import { ProductEditCardComponent } from './components/product-edit-card/product
 @NgModule({
   declarations: [
     ProductCardComponent,
-    ProductsListComponent,
+    ProductsListContainerComponent,
     ProductDetailCardComponent,
     ProductDetailContainerComponent,
     ProductEditCardComponent,
@@ -42,7 +42,7 @@ import { ProductEditCardComponent } from './components/product-edit-card/product
   ],
   exports: [
     ProductCardComponent,
-    ProductsListComponent,
+    ProductsListContainerComponent,
     ProductDetailCardComponent,
     ProductDetailContainerComponent,
   ],

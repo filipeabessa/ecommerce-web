@@ -6,11 +6,11 @@ import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-products-list',
-  templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.scss'],
+  selector: 'app-products-list-container',
+  templateUrl: './products-list-container.component.html',
+  styleUrls: ['./products-list-container.component.scss'],
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListContainerComponent implements OnInit {
   products$: Observable<Array<Product>>;
   getProductsSubscription: Subscription;
 
