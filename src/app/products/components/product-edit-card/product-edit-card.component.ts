@@ -1,4 +1,4 @@
-import { Product } from '../../../../types/index';
+import { ProductModel } from './../../models/product.models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../api/product.service';
 import { Component, Input, OnInit, Output } from '@angular/core';
@@ -19,7 +19,7 @@ export class ProductEditCardComponent implements OnInit {
   @Input() FormGroup: FormGroup;
 
   productId = Number(this.route.snapshot.paramMap.get('id'));
-  product: Product;
+  product: ProductModel;
 
   editProductForm = new FormGroup({
     title: new FormControl(null),
@@ -29,7 +29,7 @@ export class ProductEditCardComponent implements OnInit {
 
   onSubmit() {
     const { title, content, price } = this.editProductForm.value;
-    const productEditValues: Product = {};
+    const productEditValues: ProductModel = {};
     if (title) productEditValues.title = title;
     if (content) productEditValues.content = content;
     if (price) productEditValues.price = price;

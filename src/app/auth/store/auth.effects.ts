@@ -27,9 +27,10 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(signInRequest),
       exhaustMap((action) =>
-        this.authService.signIn(action.signIn).pipe(
+        this.authService.signIn(action).pipe(
           map((credentials) => {
             localStorage.setItem('token', credentials.access_token);
+            this.router.navigate(['/products']);
             return signInSuccess({ token: credentials.access_token });
           }),
           catchError((error) => of(signInError({ httpError: error })))
@@ -43,6 +44,7 @@ export class AuthEffects {
       ofType(checkForToken),
       exhaustMap(async () => {
         const token = localStorage.getItem('token');
+        console.log('token', token);
         if (token) {
           return defineTokenPerLocal({ token: token });
         } else {

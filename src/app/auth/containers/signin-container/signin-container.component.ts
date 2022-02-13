@@ -15,11 +15,12 @@ export class SigninContainerComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  // constructor(private authStore: Store<AuthState>) {}
+  constructor(private authStore: Store<AuthState>) {}
 
   onSignIn() {
-    // const signInParams = this.signInForm.value;
-    // this.authStore.dispatch(signInRequest(signInParams));
+    const signInParams = this.signInForm.value;
+    console.log(signInParams);
+    this.authStore.dispatch(signInRequest(signInParams));
   }
 
   ngOnInit(): void {}

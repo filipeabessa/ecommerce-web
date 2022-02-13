@@ -17,6 +17,7 @@ import {
 } from './products.actions';
 import { map, catchError, exhaustMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { GetProductsParams } from '../models/product.models';
 
 @Injectable()
 export class ProductsEffects {
@@ -43,8 +44,8 @@ export class ProductsEffects {
   getProductsRequest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getProductsRequest),
-      exhaustMap((action: any) =>
-        this.productService.getProducts(action.params).pipe(
+      exhaustMap((action: GetProductsParams) =>
+        this.productService.getProducts(action).pipe(
           map((products) =>
             getProductsSuccess({
               products: products,

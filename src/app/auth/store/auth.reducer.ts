@@ -11,6 +11,9 @@ import {
   signInError,
   logoutSuccess,
   logoutRequest,
+  checkForToken,
+  notFoundToken,
+  defineTokenPerLocal,
 } from './auth.actions';
 import {
   RequestState,
@@ -50,7 +53,7 @@ export const authReducer = createReducer(
   })),
   on(signInSuccess, (state, { token }) => ({
     ...state,
-    token,
+    token: token,
     requests: {
       ...state.requests,
       signIn: new SuccessfulRequest(),
@@ -78,7 +81,30 @@ export const authReducer = createReducer(
       ...state.requests,
       logOut: new SuccessfulRequest(),
     },
+  })),
+  on(checkForToken, (state) => ({
+    ...state,
+  })),
+  on(defineTokenPerLocal, (state, { token }) => ({
+    ...state,
+    token: token,
+  })),
+  on(notFoundToken, (state) => ({
+    ...state,
   }))
+);
+export const getAuthState = createFeatureSelector<AuthState>('auth');
+export const getToken = createSelector(
+  getAuthState,
+  (state: AuthState) => state.token
+);
+export const getSignInRequestState = createSelector(
+  getAuthState,
+  (state: AuthState) => state.requests.signIn
+);
+export const getLogOutRequestState = createSelector(
+  getAuthState,
+  (state: AuthState) => state.requests.logOut
 );
 
 export function reducer(

@@ -1,5 +1,5 @@
-import { Product } from '../../../../types/index';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ProductModel } from '../../models/product.models';
 
 @Component({
   selector: 'app-product-detail-card',
@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./product-detail-card.component.scss'],
 })
 export class ProductDetailCardComponent implements OnInit {
-  @Input() product: Product;
+  @Input() product: ProductModel;
   @Output() deleteProduct = new EventEmitter();
 
   constructor() {

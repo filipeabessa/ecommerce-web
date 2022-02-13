@@ -1,4 +1,4 @@
-import { Product } from '../../../../types/index';
+import { ProductModel } from './../../models/product.models';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../api/product.service';
@@ -13,7 +13,7 @@ import { ProductsState } from '../../store/products.reducer';
   providers: [ProductService],
 })
 export class ProductDetailContainerComponent implements OnInit {
-  product: Product;
+  product: ProductModel;
   productId: number = Number(this.route.snapshot.paramMap.get('id'));
 
   constructor(

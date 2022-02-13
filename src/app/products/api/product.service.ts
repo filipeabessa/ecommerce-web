@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { ProductModel } from '../models/product.models';
+import { GetProductsParams, ProductModel } from '../models/product.models';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 interface ProductsQueryParams {
   price?: number;
   title?: string;
+  token?: string;
 }
 
 interface ProductEditParams {
@@ -23,17 +24,18 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getProducts(productParams: ProductsQueryParams): Observable<ProductModel[]> {
+  getProducts(getProductParams: GetProductsParams): Observable<ProductModel[]> {
     let params = new HttpParams();
-    if (productParams?.price !== undefined) {
-      params.set('price', productParams.price.toString());
+    if (getProductParams?.price !== undefined) {
+      params.set('price', getProductParams.price.toString());
     }
-    if (productParams?.title !== undefined) {
-      params.set('title', productParams.title.toString());
+    if (getProductParams?.title !== undefined) {
+      params.set('title', getProductParams.title.toString());
     }
 
     return this.httpClient.get<ProductModel[]>(`${this.apiUrl}/products`, {
       params,
+      headers: { Authorization: `Bearer ${getProductParams.token}` },
     });
   }
 

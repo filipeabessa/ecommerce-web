@@ -6,7 +6,7 @@ const PREFIX = '[AUTH]';
 
 export const signInRequest = createAction(
   `${PREFIX} SIGNIN REQUEST`,
-  props<{ signIn: SignInModel }>()
+  props<SignInModel>()
 );
 export const signInSuccess = createAction(
   `${PREFIX} SIGNIN SUCCESS`,

@@ -1,4 +1,4 @@
-import { Product } from '../../../../types/index';
+import { ProductModel } from './../../models/product.models';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./product-card.component.scss'],
 })
 export class ProductCardComponent implements OnInit {
-  @Input() product: Product;
+  @Input() product: ProductModel;
 
   constructor(private router: Router) {}
 

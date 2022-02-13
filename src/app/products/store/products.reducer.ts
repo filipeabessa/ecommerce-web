@@ -1,4 +1,3 @@
-import { Product } from 'src/types';
 import {
   Action,
   createFeatureSelector,
@@ -27,12 +26,13 @@ import {
   RequestState,
   SuccessfulRequest,
 } from '../../models/request-state.model';
+import { ProductModel } from '../models/product.models';
 
 export const ProductsReducerFeatureKey = 'products';
 
 export interface ProductsState {
-  products: Product[];
-  product: Product | null;
+  products: ProductModel[];
+  product: ProductModel | null;
   requests: {
     retrieveProduct: RequestState;
     getProducts: RequestState;
@@ -146,7 +146,7 @@ const productsReducer = createReducer(
 );
 
 export const getProductsState =
-  createFeatureSelector<ProductsState>('Products');
+  createFeatureSelector<ProductsState>('products');
 export const retrieveProduct = createSelector(
   getProductsState,
   (state: ProductsState) => state.product

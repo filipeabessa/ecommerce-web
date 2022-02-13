@@ -1,9 +1,12 @@
-import { ProductEditParams } from '../models/product.models';
+import {
+  GetProductsParams,
+  ProductEditParams,
+  ProductModel,
+} from '../models/product.models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
-import { Product } from 'src/types';
 
-const PREFIX = '[Product]';
+const PREFIX = '[PRODUCTS]';
 
 export const retrieveProductRequest = createAction(
   `${PREFIX} Retrieve Product`,
@@ -11,7 +14,7 @@ export const retrieveProductRequest = createAction(
 );
 export const retrieveProductSuccess = createAction(
   `${PREFIX} Set Product Success`,
-  props<{ product: Product }>()
+  props<{ product: ProductModel }>()
 );
 export const retrieveProductError = createAction(
   `${PREFIX} Set Product Error`,
@@ -20,11 +23,11 @@ export const retrieveProductError = createAction(
 
 export const getProductsRequest = createAction(
   `${PREFIX} Get Products`,
-  props<{ price?: number; content?: string }>()
+  props<GetProductsParams>()
 );
 export const getProductsSuccess = createAction(
   `${PREFIX} Set Products Success`,
-  props<{ products: Product[] }>()
+  props<{ products: ProductModel[] }>()
 );
 export const getProductsError = createAction(
   `${PREFIX} Set Products Error`,
@@ -37,7 +40,7 @@ export const editProductRequest = createAction(
 );
 export const editProductSuccess = createAction(
   `${PREFIX} Edit Product Success`,
-  props<{ product: Product }>()
+  props<{ product: ProductModel }>()
 );
 export const editProductError = createAction(
   `${PREFIX} Edit Product Error`,

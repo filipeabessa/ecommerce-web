@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromProductsReducer from './store/products.reducer';
 import { ProductsEffects } from './store/products.effects';
+import * as fromAuth from '../auth/store/auth.reducer';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,6 +20,7 @@ import { ProductsListContainerComponent } from './containers/products-list-conta
 import { ProductDetailCardComponent } from './components/product-detail-card/product-detail-card.component';
 import { ProductDetailContainerComponent } from './containers/product-detail-container/product-detail-container.component';
 import { ProductEditCardComponent } from './components/product-edit-card/product-edit-card.component';
+import { AuthEffects } from '../auth/store/auth.effects';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { ProductEditCardComponent } from './components/product-edit-card/product
       fromProductsReducer.reducer
     ),
     EffectsModule.forFeature([ProductsEffects]),
+    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
+    EffectsModule.forFeature([AuthEffects]),
   ],
   exports: [
     ProductCardComponent,
