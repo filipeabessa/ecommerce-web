@@ -8,6 +8,10 @@ export interface GetProductsParams {
   title?: string;
   token?: string | null;
 }
+export interface RetrieveProductParams {
+  id: number;
+  token: string | null;
+}
 export interface ProductModel {
   id?: number;
   title?: string;

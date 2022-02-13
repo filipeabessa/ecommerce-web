@@ -1,5 +1,9 @@
 import { Observable } from 'rxjs';
-import { GetProductsParams, ProductModel } from '../models/product.models';
+import {
+  GetProductsParams,
+  ProductModel,
+  RetrieveProductParams,
+} from '../models/product.models';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -39,11 +43,13 @@ export class ProductService {
     });
   }
 
-  retrieveProduct(id: number): Observable<ProductModel> {
-    return this.httpClient.get<ProductModel>(
-      `${this.apiUrl}/products/${id}/`,
-      {}
-    );
+  retrieveProduct({
+    id,
+    token,
+  }: RetrieveProductParams): Observable<ProductModel> {
+    return this.httpClient.get<ProductModel>(`${this.apiUrl}/products/${id}/`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   }
 
   editProduct(
