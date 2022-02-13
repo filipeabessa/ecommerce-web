@@ -14,10 +14,14 @@ import {
   deleteProductRequest,
   deleteProductSuccess,
   deleteProductError,
+  createProductRequest,
+  createProductSuccess,
+  createProductError,
 } from './products.actions';
 import { map, catchError, exhaustMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import {
+  CreateProductParams,
   DeleteProductParams,
   GetProductsParams,
   RetrieveProductParams,
@@ -31,6 +35,19 @@ export class ProductsEffects {
     private productService: ProductService,
     private router: Router
   ) {}
+  createProductRequest$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(createProductRequest),
+      exhaustMap((createProductParams: CreateProductParams) =>
+        this.productService.createProduct(createProductParams).pipe(
+          map((product) => createProductSuccess(product)),
+          catchError((error) => {
+            return of(createProductError({ httpError: error }));
+          })
+        )
+      )
+    )
+  );
   retrieveProductRequest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(retrieveProductRequest),

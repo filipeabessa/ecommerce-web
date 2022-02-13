@@ -18,6 +18,9 @@ import {
   retrieveProductRequest,
   retrieveProductError,
   retrieveProductSuccess,
+  createProductRequest,
+  createProductSuccess,
+  createProductError,
 } from './products.actions';
 import {
   FailedRequest,
@@ -34,6 +37,7 @@ export interface ProductsState {
   products: ProductModel[];
   product: ProductModel | null;
   requests: {
+    createProductRequest: RequestState;
     retrieveProduct: RequestState;
     getProducts: RequestState;
     editProduct: RequestState;
@@ -45,6 +49,7 @@ const initialState: ProductsState = {
   product: null,
   products: [],
   requests: {
+    createProductRequest: new NotAskedRequest(),
     retrieveProduct: new NotAskedRequest(),
     getProducts: new NotAskedRequest(),
     editProduct: new NotAskedRequest(),
@@ -54,6 +59,28 @@ const initialState: ProductsState = {
 
 const productsReducer = createReducer(
   initialState,
+  on(createProductRequest, (state) => ({
+    ...state,
+    requests: {
+      ...state.requests,
+      editProduct: new InProgressRequest(),
+    },
+  })),
+  on(createProductSuccess, (state, product) => ({
+    ...state,
+    product: product,
+    requests: {
+      ...state.requests,
+      editProduct: new SuccessfulRequest(),
+    },
+  })),
+  on(createProductError, (state, { httpError }) => ({
+    ...state,
+    requests: {
+      ...state.requests,
+      editProduct: new FailedRequest(httpError),
+    },
+  })),
   on(retrieveProductRequest, (state) => ({
     ...state,
     product: null,

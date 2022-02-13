@@ -1,4 +1,10 @@
-export interface ProductEditParams {
+export interface CreateProductParams {
+  title: string;
+  price: number;
+  content: string;
+  token: string | null;
+}
+export interface EditProductParams {
   title: string;
   price: number;
   content: string;

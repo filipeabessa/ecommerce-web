@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs';
 import {
+  CreateProductParams,
   DeleteProductParams,
   GetProductsParams,
   ProductModel,
@@ -28,6 +29,18 @@ export class ProductService {
   apiUrl = `${environment.API}`;
 
   constructor(private httpClient: HttpClient) {}
+  createProduct(
+    createProductParams: CreateProductParams
+  ): Observable<ProductModel> {
+    return this.httpClient.post<ProductModel>(`${this.apiUrl}/products/`, {
+      body: {
+        title: createProductParams.title,
+        content: createProductParams.content,
+        price: createProductParams.price,
+      },
+      headers: { Authorization: `Bearer ${createProductParams.token}` },
+    });
+  }
 
   getProducts(getProductParams: GetProductsParams): Observable<ProductModel[]> {
     let params = new HttpParams();

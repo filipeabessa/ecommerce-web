@@ -21,6 +21,8 @@ import { ProductDetailCardComponent } from './components/product-detail-card/pro
 import { ProductDetailContainerComponent } from './containers/product-detail-container/product-detail-container.component';
 import { ProductEditCardComponent } from './components/product-edit-card/product-edit-card.component';
 import { AuthEffects } from '../auth/store/auth.effects';
+import { CreateProductContainerComponent } from './containers/create-product-container/create-product-container.component';
+import { CreateProductCardComponent } from './components/create-product-card/create-product-card.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { AuthEffects } from '../auth/store/auth.effects';
     ProductDetailCardComponent,
     ProductDetailContainerComponent,
     ProductEditCardComponent,
+    CreateProductContainerComponent,
+    CreateProductCardComponent,
   ],
   imports: [
     CommonModule,
