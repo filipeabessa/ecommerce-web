@@ -9,7 +9,7 @@ import { ProductModel } from '../../models/product.models';
 })
 export class CreateProductCardComponent implements OnInit {
   @Input() createProductFormGroup: FormGroup;
-  @Output() createProduct: EventEmitter<ProductModel>;
+  @Output() createProduct = new EventEmitter<ProductModel>();
   createProductPayload: ProductModel;
 
   onSubmit() {
