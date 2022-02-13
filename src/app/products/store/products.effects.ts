@@ -17,7 +17,10 @@ import {
 } from './products.actions';
 import { map, catchError, exhaustMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { GetProductsParams } from '../models/product.models';
+import {
+  GetProductsParams,
+  RetrieveProductParams,
+} from '../models/product.models';
 
 @Injectable()
 export class ProductsEffects {
@@ -28,15 +31,22 @@ export class ProductsEffects {
   retrieveProductRequest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(retrieveProductRequest),
-      exhaustMap((action: any) =>
-        this.productService.retrieveProduct(action.id).pipe(
-          map((product) =>
-            retrieveProductSuccess({
-              product: product,
-            })
-          ),
-          catchError((error) => of(retrieveProductError({ httpError: error })))
-        )
+      exhaustMap((retrieveProductParams: RetrieveProductParams) =>
+        this.productService
+          .retrieveProduct({
+            id: retrieveProductParams.id,
+            token: retrieveProductParams.token,
+          })
+          .pipe(
+            map((product) =>
+              retrieveProductSuccess({
+                product: product,
+              })
+            ),
+            catchError((error) =>
+              of(retrieveProductError({ httpError: error }))
+            )
+          )
       )
     )
   );

@@ -43,13 +43,15 @@ export class ProductService {
     });
   }
 
-  retrieveProduct({
-    id,
-    token,
-  }: RetrieveProductParams): Observable<ProductModel> {
-    return this.httpClient.get<ProductModel>(`${this.apiUrl}/products/${id}/`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+  retrieveProduct(
+    retrieveProductParams: RetrieveProductParams
+  ): Observable<ProductModel> {
+    return this.httpClient.get<ProductModel>(
+      `${this.apiUrl}/products/${retrieveProductParams.id}/`,
+      {
+        headers: { Authorization: `Bearer ${retrieveProductParams.token}` },
+      }
+    );
   }
 
   editProduct(
