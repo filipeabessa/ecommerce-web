@@ -2,6 +2,7 @@ import {
   GetProductsParams,
   ProductEditParams,
   ProductModel,
+  RetrieveProductParams,
 } from '../models/product.models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
@@ -10,7 +11,7 @@ const PREFIX = '[PRODUCTS]';
 
 export const retrieveProductRequest = createAction(
   `${PREFIX} Retrieve Product`,
-  props<{ id: number }>()
+  props<RetrieveProductParams>()
 );
 export const retrieveProductSuccess = createAction(
   `${PREFIX} Set Product Success`,

@@ -1,6 +1,6 @@
 <mat-card class="layout-container">
   <app-product-detail-card
-    *ngIf="product; else loading"
+    *ngIf="product$ | async as product; else loading"
     [product]="product"
     (deleteProduct)="deleteProduct()"
   ></app-product-detail-card>
