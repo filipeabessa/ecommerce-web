@@ -38,7 +38,6 @@ export class ProductDetailContainerComponent implements OnInit {
 
     this.token$.subscribe((token) => {
       if (token) {
-        console.log(token);
         if (this.productId) {
           this.productsStore.dispatch(
             retrieveProductRequest({

@@ -35,7 +35,7 @@ export class AuthEffects {
             return signInSuccess({ token: credentials.access_token });
           }),
           catchError((error) => {
-            this.router.navigate(['/404']);
+            this.router.navigate(['/signin']);
             return of(signInError({ httpError: error }));
           })
         )

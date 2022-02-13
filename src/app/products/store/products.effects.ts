@@ -21,12 +21,14 @@ import {
   GetProductsParams,
   RetrieveProductParams,
 } from '../models/product.models';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ProductsEffects {
   constructor(
     private actions$: Actions,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ) {}
   retrieveProductRequest$ = createEffect(() =>
     this.actions$.pipe(
@@ -43,9 +45,10 @@ export class ProductsEffects {
                 product: product,
               })
             ),
-            catchError((error) =>
-              of(retrieveProductError({ httpError: error }))
-            )
+            catchError((error) => {
+              this.router.navigate(['/404']);
+              return of(retrieveProductError({ httpError: error }));
+            })
           )
       )
     )
