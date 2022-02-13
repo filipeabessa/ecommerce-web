@@ -7,6 +7,7 @@ import { ProductsState, getProducts } from '../../store/products.reducer';
 import { getProductsRequest } from '../../store/products.actions';
 import { ProductModel } from '../../models/product.models';
 import { AuthState, getToken } from 'src/app/auth/store/auth.reducer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-list-container',
@@ -21,7 +22,8 @@ export class ProductsListContainerComponent implements OnInit {
 
   constructor(
     private productsStore: Store<ProductsState>,
-    private authStore: Store<AuthState>
+    private authStore: Store<AuthState>,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -36,6 +38,8 @@ export class ProductsListContainerComponent implements OnInit {
             token: token,
           })
         );
+      } else if (token === undefined) {
+        this.router.navigate(['/signin']);
       }
     });
   }

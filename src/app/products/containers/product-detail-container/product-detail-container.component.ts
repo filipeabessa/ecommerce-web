@@ -20,6 +20,7 @@ import { checkForToken } from 'src/app/auth/store/auth.actions';
 })
 export class ProductDetailContainerComponent implements OnInit {
   product$: Observable<ProductModel | null>;
+  token: string | null;
   token$: Observable<string | null>;
   getTokenSubscription: Subscription;
   productId: number = Number(this.route.snapshot.paramMap.get('id'));
@@ -36,8 +37,9 @@ export class ProductDetailContainerComponent implements OnInit {
     this.product$ = this.productsStore.pipe(select(retrieveProduct));
     this.authStore.dispatch(checkForToken());
 
-    this.token$.subscribe((token) => {
+    this.getTokenSubscription = this.token$.subscribe((token) => {
       if (token) {
+        this.token = token;
         if (this.productId) {
           this.productsStore.dispatch(
             retrieveProductRequest({
@@ -46,6 +48,8 @@ export class ProductDetailContainerComponent implements OnInit {
             })
           );
         }
+      } else if (token === undefined) {
+        this.router.navigate(['/signin']);
       }
     });
   }
@@ -55,6 +59,8 @@ export class ProductDetailContainerComponent implements OnInit {
   }
 
   deleteProduct() {
-    this.productsStore.dispatch(deleteProductRequest({ id: this.productId }));
+    this.productsStore.dispatch(
+      deleteProductRequest({ id: this.productId, token: this.token })
+    );
   }
 }

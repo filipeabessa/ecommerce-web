@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs';
 import {
+  DeleteProductParams,
   GetProductsParams,
   ProductModel,
   RetrieveProductParams,
@@ -64,10 +65,14 @@ export class ProductService {
     );
   }
 
-  deleteProduct(id: number): Observable<ProductModel> {
+  deleteProduct(
+    deleteProductParams: DeleteProductParams
+  ): Observable<ProductModel> {
     return this.httpClient.delete<ProductModel>(
-      `${this.apiUrl}/products/${id}/`,
-      {}
+      `${this.apiUrl}/products/${deleteProductParams.id}/`,
+      {
+        headers: { Authorization: `Bearer ${deleteProductParams.token}` },
+      }
     );
   }
 }

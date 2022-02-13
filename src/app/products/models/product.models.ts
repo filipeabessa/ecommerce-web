@@ -12,6 +12,10 @@ export interface RetrieveProductParams {
   id: number;
   token: string | null;
 }
+export interface DeleteProductParams {
+  id: number;
+  token: string | null;
+}
 export interface ProductModel {
   id?: number;
   title?: string;

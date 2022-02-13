@@ -1,4 +1,5 @@
 import {
+  DeleteProductParams,
   GetProductsParams,
   ProductEditParams,
   ProductModel,
@@ -49,7 +50,7 @@ export const editProductError = createAction(
 );
 export const deleteProductRequest = createAction(
   `${PREFIX} Delete Product`,
-  props<{ id: number }>()
+  props<DeleteProductParams>()
 );
 export const deleteProductSuccess = createAction(
   `${PREFIX} Delete Product Success`

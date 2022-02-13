@@ -18,6 +18,7 @@ import {
 import { map, catchError, exhaustMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import {
+  DeleteProductParams,
   GetProductsParams,
   RetrieveProductParams,
 } from '../models/product.models';
@@ -89,9 +90,12 @@ export class ProductsEffects {
   deleteProductRequest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(deleteProductRequest),
-      exhaustMap((action: any) =>
-        this.productService.deleteProduct(action.id).pipe(
-          map((product) => deleteProductSuccess()),
+      exhaustMap((deleteProductParams: DeleteProductParams) =>
+        this.productService.deleteProduct(deleteProductParams).pipe(
+          map((product) => {
+            this.router.navigate(['/products']);
+            return deleteProductSuccess();
+          }),
           catchError((error) => of(deleteProductError({ httpError: error })))
         )
       )
