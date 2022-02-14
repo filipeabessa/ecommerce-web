@@ -37,11 +37,11 @@ export interface ProductsState {
   products: ProductModel[];
   product: ProductModel | null;
   requests: {
-    createProductRequest: RequestState;
-    retrieveProduct: RequestState;
-    getProducts: RequestState;
-    editProduct: RequestState;
-    deleteProduct: RequestState;
+    createProductRequestState: RequestState;
+    retrieveProductRequestState: RequestState;
+    getProductsRequestState: RequestState;
+    editProductRequestState: RequestState;
+    deleteProductRequestState: RequestState;
   };
 }
 
@@ -49,11 +49,11 @@ const initialState: ProductsState = {
   product: null,
   products: [],
   requests: {
-    createProductRequest: new NotAskedRequest(),
-    retrieveProduct: new NotAskedRequest(),
-    getProducts: new NotAskedRequest(),
-    editProduct: new NotAskedRequest(),
-    deleteProduct: new NotAskedRequest(),
+    createProductRequestState: new NotAskedRequest(),
+    retrieveProductRequestState: new NotAskedRequest(),
+    getProductsRequestState: new NotAskedRequest(),
+    editProductRequestState: new NotAskedRequest(),
+    deleteProductRequestState: new NotAskedRequest(),
   },
 };
 
@@ -63,7 +63,7 @@ const productsReducer = createReducer(
     ...state,
     requests: {
       ...state.requests,
-      editProduct: new InProgressRequest(),
+      editProductRequestState: new InProgressRequest(),
     },
   })),
   on(createProductSuccess, (state, product) => ({
@@ -71,14 +71,14 @@ const productsReducer = createReducer(
     product: product,
     requests: {
       ...state.requests,
-      editProduct: new SuccessfulRequest(),
+      editProductRequestState: new SuccessfulRequest(),
     },
   })),
   on(createProductError, (state, { httpError }) => ({
     ...state,
     requests: {
       ...state.requests,
-      editProduct: new FailedRequest(httpError),
+      editProductRequestState: new FailedRequest(httpError),
     },
   })),
   on(retrieveProductRequest, (state) => ({
@@ -86,7 +86,7 @@ const productsReducer = createReducer(
     product: null,
     requests: {
       ...state.requests,
-      retrieveProduct: new InProgressRequest(),
+      retrieveProductRequestState: new InProgressRequest(),
     },
   })),
   on(retrieveProductSuccess, (state, { product }) => ({
@@ -94,21 +94,21 @@ const productsReducer = createReducer(
     product: product,
     requests: {
       ...state.requests,
-      retrieveProduct: new SuccessfulRequest(),
+      retrieveProductRequestState: new SuccessfulRequest(),
     },
   })),
   on(retrieveProductError, (state, { httpError }) => ({
     ...state,
     requests: {
       ...state.requests,
-      retrieveProduct: new FailedRequest(httpError),
+      retrieveProductRequestState: new FailedRequest(httpError),
     },
   })),
   on(getProductsRequest, (state) => ({
     ...state,
     requests: {
       ...state.requests,
-      getProducts: new InProgressRequest(),
+      getProductsRequestState: new InProgressRequest(),
     },
   })),
   on(getProductsSuccess, (state, { products }) => ({
@@ -116,21 +116,21 @@ const productsReducer = createReducer(
     products: products,
     requests: {
       ...state.requests,
-      getProducts: new SuccessfulRequest(),
+      getProductsRequestState: new SuccessfulRequest(),
     },
   })),
   on(getProductsError, (state, { httpError }) => ({
     ...state,
     requests: {
       ...state.requests,
-      getProducts: new FailedRequest(httpError),
+      getProductsRequestState: new FailedRequest(httpError),
     },
   })),
   on(editProductRequest, (state) => ({
     ...state,
     requests: {
       ...state.requests,
-      editProduct: new InProgressRequest(),
+      editProductRequestState: new InProgressRequest(),
     },
   })),
   on(editProductSuccess, (state, { product }) => ({
@@ -138,21 +138,21 @@ const productsReducer = createReducer(
     product: product,
     requests: {
       ...state.requests,
-      editProduct: new SuccessfulRequest(),
+      editProductRequestState: new SuccessfulRequest(),
     },
   })),
   on(editProductError, (state, { httpError }) => ({
     ...state,
     requests: {
       ...state.requests,
-      editProduct: new FailedRequest(httpError),
+      editProductRequestState: new FailedRequest(httpError),
     },
   })),
   on(deleteProductRequest, (state) => ({
     ...state,
     requests: {
       ...state.requests,
-      deleteProduct: new InProgressRequest(),
+      deleteProductRequestState: new InProgressRequest(),
     },
   })),
   on(deleteProductSuccess, (state) => ({
@@ -160,14 +160,14 @@ const productsReducer = createReducer(
     product: null,
     requests: {
       ...state.requests,
-      deleteProduct: new SuccessfulRequest(),
+      deleteProductRequestState: new SuccessfulRequest(),
     },
   })),
   on(deleteProductError, (state, { httpError }) => ({
     ...state,
     requests: {
       ...state.requests,
-      deleteProduct: new FailedRequest(httpError),
+      deleteProductRequestState: new FailedRequest(httpError),
     },
   }))
 );
@@ -180,7 +180,7 @@ export const retrieveProduct = createSelector(
 );
 export const retrieveProductRequestState = createSelector(
   getProductsState,
-  (state: ProductsState) => state.requests.retrieveProduct
+  (state: ProductsState) => state.requests.retrieveProductRequestState
 );
 export const getProducts = createSelector(
   getProductsState,
@@ -188,15 +188,15 @@ export const getProducts = createSelector(
 );
 export const getProductsRequestState = createSelector(
   getProductsState,
-  (state: ProductsState) => state.requests.getProducts
+  (state: ProductsState) => state.requests.getProductsRequestState
 );
 export const editProductRequestState = createSelector(
   getProductsState,
-  (state: ProductsState) => state.requests.editProduct
+  (state: ProductsState) => state.requests.editProductRequestState
 );
 export const deleteProductRequestState = createSelector(
   getProductsState,
-  (state: ProductsState) => state.requests.deleteProduct
+  (state: ProductsState) => state.requests.deleteProductRequestState
 );
 
 export function reducer(

@@ -35,7 +35,7 @@ export class CreateProductContainerComponent implements OnInit {
     this.authStore.dispatch(checkForToken());
 
     this.getTokenSubscription = this.token$.subscribe((token) => {
-      if (token) {
+      if (token !== null) {
         this.token = token;
       } else if (token === undefined) {
         this.router.navigate(['/signin']);
@@ -49,8 +49,14 @@ export class CreateProductContainerComponent implements OnInit {
 
   onCreateProduct() {
     const { title, content, price } = this.createProductFormGroup.value;
+    const numberPrice = Number(price);
     this.productsStore.dispatch(
-      createProductRequest({ title, content, price, token: this.token })
+      createProductRequest({
+        title,
+        content,
+        price: numberPrice,
+        token: this.token,
+      })
     );
   }
 }

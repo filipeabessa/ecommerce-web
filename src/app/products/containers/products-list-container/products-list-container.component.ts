@@ -1,13 +1,19 @@
+import { FailedRequest } from './../../../models/request-state.model';
 import { checkForToken } from './../../../auth/store/auth.actions';
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 
-import { ProductsState, getProducts } from '../../store/products.reducer';
+import {
+  ProductsState,
+  getProducts,
+  getProductsRequestState,
+} from '../../store/products.reducer';
 import { getProductsRequest } from '../../store/products.actions';
 import { ProductModel } from '../../models/product.models';
 import { AuthState, getToken } from 'src/app/auth/store/auth.reducer';
 import { Router } from '@angular/router';
+import { RequestState } from 'src/app/models/request-state.model';
 
 @Component({
   selector: 'app-products-list-container',
@@ -16,8 +22,9 @@ import { Router } from '@angular/router';
 })
 export class ProductsListContainerComponent implements OnInit {
   products$: Observable<Array<ProductModel>>;
-  getProductsSubscription: Subscription;
   token$: Observable<string | null>;
+  getProductsRequestState$: Observable<RequestState>;
+  getProductsSubscription: Subscription;
   getTokenSubscription: Subscription;
 
   constructor(
@@ -29,6 +36,10 @@ export class ProductsListContainerComponent implements OnInit {
   ngOnInit() {
     this.products$ = this.productsStore.pipe(select(getProducts));
     this.token$ = this.authStore.pipe(select(getToken));
+    this.getProductsRequestState$ = this.productsStore.pipe(
+      select(getProductsRequestState)
+    );
+
     this.authStore.dispatch(checkForToken());
 
     this.getTokenSubscription = this.token$.subscribe((token) => {
@@ -38,7 +49,10 @@ export class ProductsListContainerComponent implements OnInit {
             token: token,
           })
         );
-      } else if (token === undefined) {
+      }
+    });
+    this.getProductsRequestState$.subscribe((state) => {
+      if (state.isFailed()) {
         this.router.navigate(['/signin']);
       }
     });

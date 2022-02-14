@@ -32,14 +32,17 @@ export class ProductService {
   createProduct(
     createProductParams: CreateProductParams
   ): Observable<ProductModel> {
-    return this.httpClient.post<ProductModel>(`${this.apiUrl}/products/`, {
-      body: {
+    return this.httpClient.post<ProductModel>(
+      `${this.apiUrl}/products/`,
+      {
         title: createProductParams.title,
         content: createProductParams.content,
         price: createProductParams.price,
       },
-      headers: { Authorization: `Bearer ${createProductParams.token}` },
-    });
+      {
+        headers: { Authorization: `Bearer ${createProductParams.token}` },
+      }
+    );
   }
 
   getProducts(getProductParams: GetProductsParams): Observable<ProductModel[]> {
