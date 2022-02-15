@@ -182,6 +182,10 @@ export const retrieveProductRequestState = createSelector(
   getProductsState,
   (state: ProductsState) => state.requests.retrieveProductRequestState
 );
+export const createProductRequestState = createSelector(
+  getProductsState,
+  (state: ProductsState) => state.requests.createProductRequestState
+);
 export const getProducts = createSelector(
   getProductsState,
   (state: ProductsState) => state.products

@@ -25,6 +25,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     NavbarComponent,
     PageNotFoundContainerComponent,
     MaterialModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
     RouterModule,
