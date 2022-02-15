@@ -43,7 +43,11 @@ export class ProductsEffects {
       ofType(createProductRequest),
       exhaustMap((createProductParams: CreateProductParams) =>
         this.productService.createProduct(createProductParams).pipe(
-          map((product) => createProductSuccess(product)),
+          map((product) => {
+            this.alertsService.successSnackbar('Produto criado com sucesso');
+            this.router.navigate(['/products']);
+            return createProductSuccess(product);
+          }),
           catchError((error) => {
             if (error.status === 401) {
               this.alertsService.errorSnackbar('Usuário não autenticado');
@@ -106,11 +110,13 @@ export class ProductsEffects {
       ofType(editProductRequest),
       exhaustMap((editProducRequestParams: EditProductRequestParams) =>
         this.productService.editProduct(editProducRequestParams).pipe(
-          map((product) =>
-            editProductSuccess({
+          map((product) => {
+            this.alertsService.successSnackbar('Produto editado com sucesso');
+            this.router.navigate(['/products']);
+            return editProductSuccess({
               product: product,
-            })
-          ),
+            });
+          }),
           catchError((error) => {
             if (error.status === 401) {
               this.alertsService.errorSnackbar('Usuário não autenticado');

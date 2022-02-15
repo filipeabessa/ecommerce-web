@@ -4,14 +4,9 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { AuthState, getToken } from 'src/app/auth/store/auth.reducer';
-import {
-  createProductRequestState,
-  ProductsState,
-} from '../../store/products.reducer';
+import { ProductsState } from '../../store/products.reducer';
 import { FormControl, FormGroup } from '@angular/forms';
 import { createProductRequest } from '../../store/products.actions';
-import { RequestState } from 'src/app/models/request-state.model';
-import { AlertsService } from 'src/app/core/services/alerts.service';
 
 @Component({
   selector: 'app-create-product-container',
@@ -21,15 +16,12 @@ import { AlertsService } from 'src/app/core/services/alerts.service';
 export class CreateProductContainerComponent implements OnInit {
   token: string | null;
   token$: Observable<string | null>;
-  createProductRequestState$: Observable<RequestState>;
   getTokenSubscription: Subscription;
-  createProductRequestStateSubscription: Subscription;
 
   constructor(
     public router: Router,
     private productsStore: Store<ProductsState>,
-    private authStore: Store<AuthState>,
-    private alertsService: AlertsService
+    private authStore: Store<AuthState>
   ) {}
 
   createProductFormGroup = new FormGroup({
@@ -40,19 +32,7 @@ export class CreateProductContainerComponent implements OnInit {
 
   ngOnInit() {
     this.token$ = this.authStore.pipe(select(getToken));
-    this.createProductRequestState$ = this.productsStore.pipe(
-      select(createProductRequestState)
-    );
     this.authStore.dispatch(checkForToken());
-
-    this.createProductRequestStateSubscription =
-      this.createProductRequestState$.subscribe((state) => {
-        if (state.isSuccessful()) {
-          console.log('success');
-          this.alertsService.successSnackbar('Produto criado com sucesso');
-          this.router.navigate(['/products']);
-        }
-      });
 
     this.getTokenSubscription = this.token$.subscribe((token) => {
       if (token !== null) {
@@ -65,7 +45,6 @@ export class CreateProductContainerComponent implements OnInit {
 
   ngOnDestroy() {
     this.getTokenSubscription.unsubscribe();
-    this.createProductRequestStateSubscription.unsubscribe();
   }
 
   onCreateProduct() {
