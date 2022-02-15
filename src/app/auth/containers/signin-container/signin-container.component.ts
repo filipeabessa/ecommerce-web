@@ -19,7 +19,6 @@ export class SigninContainerComponent implements OnInit {
 
   onSignIn() {
     const signInParams = this.signInForm.value;
-    console.log(signInParams);
     this.authStore.dispatch(signInRequest(signInParams));
   }
 
