@@ -66,15 +66,21 @@ export class ProductDetailContainerComponent implements OnInit {
   }
 
   onEditProduct(event: EditProductParams) {
+    const editParams: EditProductParams = {};
+    if (event.title) {
+      editParams['title'] = event.title;
+    }
+    if (event.content) {
+      editParams['content'] = event.content;
+    }
+    if (event.price) {
+      editParams['price'] = event.price;
+    }
     this.productsStore.dispatch(
       editProductRequest({
         id: this.productId,
         token: this.token,
-        editParams: {
-          title: event.title,
-          content: event.content,
-          price: event.price,
-        },
+        editParams: editParams,
       })
     );
   }

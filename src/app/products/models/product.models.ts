@@ -5,9 +5,9 @@ export interface CreateProductParams {
   token: string | null;
 }
 export interface EditProductParams {
-  title: string;
-  price: number;
-  content: string;
+  title?: string;
+  price?: number;
+  content?: string;
 }
 export interface EditProductRequestParams {
   id: number;
