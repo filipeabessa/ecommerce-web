@@ -7,6 +7,7 @@
     "authentication",
     "project_structure",
     "products_store",
-    "core_module"
+    "core_module",
+    "styles"
   ]
 }
