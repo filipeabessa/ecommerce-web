@@ -9,6 +9,11 @@ export interface EditProductParams {
   price: number;
   content: string;
 }
+export interface EditProductRequestParams {
+  id: number;
+  token: string | null;
+  editParams: EditProductParams;
+}
 export interface GetProductsParams {
   price?: number;
   title?: string;

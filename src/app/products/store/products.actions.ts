@@ -1,3 +1,4 @@
+import { EditProductRequestParams } from './../models/product.models';
 import {
   DeleteProductParams,
   GetProductsParams,
@@ -52,7 +53,7 @@ export const getProductsError = createAction(
 
 export const editProductRequest = createAction(
   `${PREFIX} Edit Product`,
-  props<{ id: number; editParams: EditProductParams }>()
+  props<EditProductRequestParams>()
 );
 export const editProductSuccess = createAction(
   `${PREFIX} Edit Product Success`,

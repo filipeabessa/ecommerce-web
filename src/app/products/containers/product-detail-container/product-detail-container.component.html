@@ -2,7 +2,8 @@
   <app-product-detail-card
     *ngIf="product$ | async as product; else loading"
     [product]="product"
-    (deleteProduct)="deleteProduct()"
+    (deleteProduct)="onDeleteProduct()"
+    (editProduct)="onEditProduct($event)"
   ></app-product-detail-card>
 
   <ng-template #loading>

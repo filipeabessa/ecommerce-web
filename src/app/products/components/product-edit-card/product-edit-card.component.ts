@@ -1,7 +1,7 @@
-import { ProductModel } from './../../models/product.models';
+import { EditProductParams, ProductModel } from './../../models/product.models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../api/product.service';
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -17,6 +17,7 @@ export class ProductEditCardComponent implements OnInit {
   ) {}
 
   @Input() FormGroup: FormGroup;
+  @Output() editProduct = new EventEmitter<EditProductParams>();
 
   productId = Number(this.route.snapshot.paramMap.get('id'));
   product: ProductModel;
@@ -34,18 +35,7 @@ export class ProductEditCardComponent implements OnInit {
     if (content) productEditValues.content = content;
     if (price) productEditValues.price = price;
 
-    this.productService
-      .editProduct(this.productId, productEditValues)
-      .subscribe(
-        (product) => {
-          console.log(product);
-          this.product = product;
-        },
-        (error) => {
-          this.router.navigate(['/404']);
-          console.log(error);
-        }
-      );
+    this.editProduct.emit({ title, content, price });
   }
 
   ngOnInit(): void {}

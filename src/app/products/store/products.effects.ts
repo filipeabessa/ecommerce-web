@@ -1,3 +1,4 @@
+import { EditProductRequestParams } from './../models/product.models';
 import { ProductService } from '../api/product.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -103,8 +104,8 @@ export class ProductsEffects {
   editProductRequest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(editProductRequest),
-      exhaustMap((action: any) =>
-        this.productService.editProduct(action.id, action.editParams).pipe(
+      exhaustMap((editProducRequestParams: EditProductRequestParams) =>
+        this.productService.editProduct(editProducRequestParams).pipe(
           map((product) =>
             editProductSuccess({
               product: product,

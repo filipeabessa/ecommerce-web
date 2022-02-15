@@ -20,7 +20,10 @@
       <h1 class="product-name">{{ product.title }}</h1>
       <p class="product-content">{{ product.content }}</p>
       <p class="product-price">Por: R$ {{ product.price }}</p>
-      <app-product-edit-card class="edit-card"></app-product-edit-card>
+      <app-product-edit-card
+        class="edit-card"
+        (editProduct)="onEditProduct($event)"
+      ></app-product-edit-card>
     </div>
   </mat-card-content>
 </div>

@@ -1,10 +1,11 @@
-import { ProductModel } from './../../models/product.models';
+import { EditProductParams, ProductModel } from './../../models/product.models';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../api/product.service';
 import { select, Store } from '@ngrx/store';
 import {
   deleteProductRequest,
+  editProductRequest,
   retrieveProductRequest,
 } from '../../store/products.actions';
 import { ProductsState, retrieveProduct } from '../../store/products.reducer';
@@ -58,9 +59,23 @@ export class ProductDetailContainerComponent implements OnInit {
     this.getTokenSubscription.unsubscribe();
   }
 
-  deleteProduct() {
+  onDeleteProduct() {
     this.productsStore.dispatch(
       deleteProductRequest({ id: this.productId, token: this.token })
+    );
+  }
+
+  onEditProduct(event: EditProductParams) {
+    this.productsStore.dispatch(
+      editProductRequest({
+        id: this.productId,
+        token: this.token,
+        editParams: {
+          title: event.title,
+          content: event.content,
+          price: event.price,
+        },
+      })
     );
   }
 }

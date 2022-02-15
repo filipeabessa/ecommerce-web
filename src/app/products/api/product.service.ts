@@ -1,3 +1,4 @@
+import { EditProductRequestParams } from './../models/product.models';
 import { Observable } from 'rxjs';
 import {
   CreateProductParams,
@@ -72,12 +73,14 @@ export class ProductService {
   }
 
   editProduct(
-    id: number,
-    editParams: ProductEditParams
+    editProductParams: EditProductRequestParams
   ): Observable<ProductModel> {
     return this.httpClient.patch<ProductModel>(
-      `${this.apiUrl}/products/${id}/`,
-      editParams
+      `${this.apiUrl}/products/${editProductParams.id}/`,
+      editProductParams.editParams,
+      {
+        headers: { Authorization: `Bearer ${editProductParams.token}` },
+      }
     );
   }
 
