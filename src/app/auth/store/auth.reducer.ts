@@ -27,17 +27,19 @@ export const authFeatureKey = 'auth';
 
 export interface AuthState {
   token: string | null;
+  isAuthenticated: boolean;
   requests: {
-    signIn: RequestState;
-    logOut: RequestState;
+    signInRequestState: RequestState;
+    logOutRequestState: RequestState;
   };
 }
 
 const initialState: AuthState = {
   token: null,
+  isAuthenticated: false,
   requests: {
-    signIn: new NotAskedRequest(),
-    logOut: new NotAskedRequest(),
+    signInRequestState: new NotAskedRequest(),
+    logOutRequestState: new NotAskedRequest(),
   },
 };
 
@@ -48,38 +50,39 @@ export const authReducer = createReducer(
     token: null,
     requests: {
       ...state.requests,
-      signIn: new InProgressRequest(),
+      signInRequestState: new InProgressRequest(),
     },
   })),
   on(signInSuccess, (state, { token }) => ({
     ...state,
     token: token,
+    isAuthenticated: true,
     requests: {
       ...state.requests,
-      signIn: new SuccessfulRequest(),
+      signInRequestState: new SuccessfulRequest(),
     },
   })),
   on(signInError, (state, { httpError }) => ({
     ...state,
     requests: {
       ...state.requests,
-      signIn: new FailedRequest(httpError),
+      signInRequestState: new FailedRequest(httpError),
     },
   })),
   on(logoutRequest, (state) => ({
     ...state,
     requests: {
       ...state.requests,
-      logOut: new InProgressRequest(),
+      logOutRequestState: new InProgressRequest(),
     },
   })),
   on(logoutSuccess, (state) => ({
     ...state,
-    credentials: null,
-    userData: null,
+    token: null,
+    isAuthenticated: false,
     requests: {
       ...state.requests,
-      logOut: new SuccessfulRequest(),
+      logOutRequestState: new SuccessfulRequest(),
     },
   })),
   on(checkForToken, (state) => ({
@@ -94,17 +97,21 @@ export const authReducer = createReducer(
   }))
 );
 export const getAuthState = createFeatureSelector<AuthState>('auth');
+export const isUserAuthenticated = createSelector(
+  getAuthState,
+  (state) => state.isAuthenticated
+);
 export const getToken = createSelector(
   getAuthState,
   (state: AuthState) => state.token
 );
 export const getSignInRequestState = createSelector(
   getAuthState,
-  (state: AuthState) => state.requests.signIn
+  (state: AuthState) => state.requests.signInRequestState
 );
 export const getLogOutRequestState = createSelector(
   getAuthState,
-  (state: AuthState) => state.requests.logOut
+  (state: AuthState) => state.requests.logOutRequestState
 );
 
 export function reducer(

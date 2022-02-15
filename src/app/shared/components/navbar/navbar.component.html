@@ -3,7 +3,12 @@
   <div class="links">
     <a href="/products" class="common-link">Produtos</a>
     <a href="/createproduct" class="common-link">Criar Produto</a>
-    <a mat-flat-button color="primary" class="button-link" href="/signin"
+    <a
+      *ngIf="!isAuthenticated$"
+      mat-flat-button
+      color="primary"
+      class="button-link"
+      href="/signin"
       >Login</a
     >
   </div>
