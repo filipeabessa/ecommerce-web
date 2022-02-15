@@ -12,8 +12,12 @@
   > .links {
     margin-right: 50px;
 
-    a {
-      margin-right: 50px;
+    > .common-link {
+      text-decoration: none;
+      margin-right: 30px;
+    }
+    > .button-link {
+      margin: 0 30px;
     }
   }
 }
