@@ -16,6 +16,8 @@ import { environment } from 'src/environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

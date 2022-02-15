@@ -27,13 +27,15 @@ import {
   RetrieveProductParams,
 } from '../models/product.models';
 import { Router } from '@angular/router';
+import { AlertsService } from 'src/app/core/services/alerts.service';
 
 @Injectable()
 export class ProductsEffects {
   constructor(
     private actions$: Actions,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private alertsService: AlertsService
   ) {}
   createProductRequest$ = createEffect(() =>
     this.actions$.pipe(
@@ -42,6 +44,9 @@ export class ProductsEffects {
         this.productService.createProduct(createProductParams).pipe(
           map((product) => createProductSuccess(product)),
           catchError((error) => {
+            if (error.status === 401) {
+              this.alertsService.successSnackbar('Usuário não autenticado');
+            }
             return of(createProductError({ httpError: error }));
           })
         )
@@ -64,7 +69,9 @@ export class ProductsEffects {
               })
             ),
             catchError((error) => {
-              this.router.navigate(['/404']);
+              if (error.status === 401) {
+                this.alertsService.successSnackbar('Usuário não autorizado');
+              }
               return of(retrieveProductError({ httpError: error }));
             })
           )
@@ -82,7 +89,12 @@ export class ProductsEffects {
               products: products,
             })
           ),
-          catchError((error) => of(getProductsError({ httpError: error })))
+          catchError((error) => {
+            if (error.status === 401) {
+              this.alertsService.successSnackbar('Usuário não autorizado');
+            }
+            return of(getProductsError({ httpError: error }));
+          })
         )
       )
     )
@@ -98,7 +110,12 @@ export class ProductsEffects {
               product: product,
             })
           ),
-          catchError((error) => of(editProductError({ httpError: error })))
+          catchError((error) => {
+            if (error.status === 401) {
+              this.alertsService.successSnackbar('Usuário não autenticado');
+            }
+            return of(editProductError({ httpError: error }));
+          })
         )
       )
     )
@@ -113,7 +130,12 @@ export class ProductsEffects {
             this.router.navigate(['/products']);
             return deleteProductSuccess();
           }),
-          catchError((error) => of(deleteProductError({ httpError: error })))
+          catchError((error) => {
+            if (error.status === 401) {
+              this.alertsService.successSnackbar('Usuário não autenticado');
+            }
+            return of(deleteProductError({ httpError: error }));
+          })
         )
       )
     )

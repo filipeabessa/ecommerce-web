@@ -9,6 +9,7 @@ import { EffectsModule } from '@ngrx/effects';
 import * as fromProductsReducer from './store/products.reducer';
 import { ProductsEffects } from './store/products.effects';
 import * as fromAuth from '../auth/store/auth.reducer';
+import { CoreModule } from '../core/core.module';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -50,6 +51,7 @@ import { CreateProductCardComponent } from './components/create-product-card/cre
     EffectsModule.forFeature([ProductsEffects]),
     StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
     EffectsModule.forFeature([AuthEffects]),
+    CoreModule,
   ],
   exports: [
     ProductCardComponent,
