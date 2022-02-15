@@ -63,7 +63,7 @@ const productsReducer = createReducer(
     ...state,
     requests: {
       ...state.requests,
-      editProductRequestState: new InProgressRequest(),
+      createProductRequestState: new InProgressRequest(),
     },
   })),
   on(createProductSuccess, (state, product) => ({
@@ -71,14 +71,14 @@ const productsReducer = createReducer(
     product: product,
     requests: {
       ...state.requests,
-      editProductRequestState: new SuccessfulRequest(),
+      createProductRequestState: new SuccessfulRequest(),
     },
   })),
   on(createProductError, (state, { httpError }) => ({
     ...state,
     requests: {
       ...state.requests,
-      editProductRequestState: new FailedRequest(httpError),
+      createProductRequestState: new FailedRequest(httpError),
     },
   })),
   on(retrieveProductRequest, (state) => ({

@@ -48,7 +48,9 @@ export class CreateProductContainerComponent implements OnInit {
     this.createProductRequestStateSubscription =
       this.createProductRequestState$.subscribe((state) => {
         if (state.isSuccessful()) {
-          this.alertsService.errorSnackbar('Usuário não autenticado');
+          console.log('success');
+          this.alertsService.successSnackbar('Produto criado com sucesso');
+          this.router.navigate(['/products']);
         }
       });
 
