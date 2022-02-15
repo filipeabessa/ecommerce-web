@@ -1,32 +1,32 @@
-<form
-  [formGroup]="signInForm"
-  (ngSubmit)="onSignIn()"
-  class="edit-card-container"
->
-  <h1 class="title">Login</h1>
-  <div class="fields-wrapper">
-    <mat-form-field appearance="fill" class="field">
-      <mat-label>Usuário</mat-label>
-      <input name="username" formControlName="username" matInput />
-    </mat-form-field>
+<div class="container">
+  <mat-card class="edit-card">
+    <form [formGroup]="signInForm" (ngSubmit)="onSignIn()">
+      <h1 class="title">Login</h1>
+      <div class="fields-wrapper">
+        <mat-form-field appearance="fill" class="field">
+          <mat-label>Usuário</mat-label>
+          <input name="username" formControlName="username" matInput />
+        </mat-form-field>
 
-    <mat-form-field appearance="fill" class="field">
-      <mat-label>Senha</mat-label>
-      <input
-        name="password"
-        formControlName="password"
-        matInput
-        type="password"
-      />
-    </mat-form-field>
-  </div>
-  <button
-    mat-raised-button
-    type="submit"
-    color="primary"
-    class="save-button"
-    [disabled]="!signInForm.valid"
-  >
-    Entrar
-  </button>
-</form>
+        <mat-form-field appearance="fill" class="field">
+          <mat-label>Senha</mat-label>
+          <input
+            name="password"
+            formControlName="password"
+            matInput
+            type="password"
+          />
+        </mat-form-field>
+      </div>
+      <button
+        mat-raised-button
+        type="submit"
+        color="primary"
+        class="save-button"
+        [disabled]="!signInForm.valid"
+      >
+        Entrar
+      </button>
+    </form>
+  </mat-card>
+</div>

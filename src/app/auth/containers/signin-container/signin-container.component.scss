@@ -1,31 +1,35 @@
-.edit-card-container {
+.container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  padding: 40px;
-  width: 500px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+  align-items: center;
+  padding: 0;
+  margin-top: 200px;
 
-  > .fields-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
+  > .edit-card {
+    padding: 60px;
+    width: 500px;
 
-    > .field {
-      width: 400px;
+    > form {
+      > .fields-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 20px;
+
+        > .field {
+          width: 400px;
+        }
+      }
+
+      > .title {
+        align-self: flex-start;
+      }
+
+      > .save-button {
+        width: 100%;
+      }
     }
-  }
-
-  > .title {
-    align-self: flex-start;
-  }
-
-  > .save-button {
-    width: 100%;
   }
 }
