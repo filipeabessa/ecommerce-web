@@ -21,13 +21,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     HttpClientModule,
   ],
   exports: [
+    CommonModule,
     NavbarComponent,
     PageNotFoundContainerComponent,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule,
-    StoreModule,
     HttpClientModule,
+    RouterModule,
   ],
 })
 export class SharedModule {}

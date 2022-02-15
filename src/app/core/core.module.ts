@@ -1,14 +1,12 @@
 import { AlertsService } from './services/alerts.service';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AlertSnackbarComponent } from './components/alert-snackbar/alert-snackbar.component';
+import { SharedModule } from '../shared/shared.module';
 
-import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AlertSnackbarComponent } from './components/alert-snackbar/alert-snackbar.component';
 
 @NgModule({
   declarations: [AlertSnackbarComponent],
-  imports: [CommonModule, MatIconModule, MatSnackBarModule],
+  imports: [SharedModule],
   exports: [AlertSnackbarComponent],
   providers: [AlertsService],
 })
