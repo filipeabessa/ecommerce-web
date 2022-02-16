@@ -8,12 +8,13 @@ import { SignInModel } from '../models/auth.models';
   providedIn: 'root',
 })
 export class AuthService {
-  authURL = `${environment.authURL}`;
+  authURL = environment.authURL;
+  authorizationHeader = environment.authAuthorizationHeader;
+
   headers = new HttpHeaders({
     Accept: 'application/json',
     'Content-Type': 'application/x-www-form-urlencoded',
-    Authorization:
-      'Basic RmxsTUV6VllMM2diTEZFbVdmdFZjeG9PVlVmVzlvRTh4Q3hVb3JOcDpQMFRBSGQ0d3ZaSlhuRFBKV0pvQzM3dlViNFkwbmpNdnJ3UUpvMXlvQ1ZVS1gzTVR5RzVxSXZVTkVEeWVVSVkwYzR5Q2ZWZ2p1dUZ0dVZsaHJzREFaejJGSjFqNXY0ZW84d1BBVElTcEk3QWFLREFaamtVVkhtYzEwNGdTcmdBWg==',
+    Authorization: this.authorizationHeader,
   });
 
   constructor(private httpClient: HttpClient) {}

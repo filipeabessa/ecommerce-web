@@ -7,6 +7,8 @@ const baseURL = 'http://localhost:8000/';
 export const environment = {
   production: true,
   authURL: baseURL + 'o/token/',
+  authAuthorizationHeader:
+    'Basic TkYxWlZ0OXJqQnlra2s5ZnBGMEh1QmgzcHU2ZjJXRFhLSWdYazhDazpPbmRKV1lqYlc0a2tsQzdibW5mSDRLU1E2NkNjU2lOSDZyRUhHcTZ6cXQ4R0lLRU92cUZrdGdmNUpNQ2I3R2VZUFkycGQ4STBNeFhjb1RtdzhSZnpQVXkxYmlNMldzS3BhWHBtaTNqczF1ZWhnWlI1T1RrdGt4TDdBV1hRNlV4dQ==',
   apiURL: baseURL + 'api/v1',
 };
 
