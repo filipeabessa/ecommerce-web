@@ -8,7 +8,7 @@ import { SignInModel } from '../models/auth.models';
   providedIn: 'root',
 })
 export class AuthService {
-  apiUrl = `${environment.authURL}`;
+  authUrl = `${environment.authURL}`;
   headers = new HttpHeaders({
     Accept: 'application/json',
     'Content-Type': 'application/x-www-form-urlencoded',
@@ -20,7 +20,7 @@ export class AuthService {
 
   signIn(signIn: SignInModel): Observable<any> {
     return this.httpClient.post(
-      `${this.apiUrl}/o/token/`,
+      `${this.authUrl}`,
       `grant_type=password&username=${signIn.username}&password=${signIn.password}`,
       { headers: this.headers }
     );

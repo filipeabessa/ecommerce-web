@@ -6,8 +6,8 @@ const baseURL = 'http://localhost:8000/';
 
 export const environment = {
   production: true,
-  authURL: `${baseURL} + 'o/token/'`,
-  apiURL: `${baseURL} + 'api/v1'`,
+  authURL: baseURL + 'o/token/',
+  apiURL: baseURL + 'api/v1',
 };
 
 /*
