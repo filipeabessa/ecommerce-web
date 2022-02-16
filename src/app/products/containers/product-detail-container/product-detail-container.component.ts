@@ -9,7 +9,7 @@ import {
   retrieveProductRequest,
 } from '../../store/products.actions';
 import { ProductsState, retrieveProduct } from '../../store/products.reducer';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-detail-container',
