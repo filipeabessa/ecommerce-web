@@ -8,6 +8,7 @@
     "project_structure",
     "products_store",
     "core_module",
-    "styles"
+    "styles",
+    "deploy"
   ]
 }
