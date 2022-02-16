@@ -9,6 +9,7 @@
     "products_store",
     "core_module",
     "styles",
-    "deploy"
+    "deploy",
+    "documentation"
   ]
 }

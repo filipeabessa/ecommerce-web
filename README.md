@@ -1,6 +1,15 @@
 # EcommerceWeb
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.1.
+## Important Links
+
+- [Deploy do Front-End](https://hiremestore.netlify.app/)
+- [Deploy da APi](https://fbessa-products-management-api.herokuapp.com/api/v1/)
+- [Documentação da API em Swagger](https://fbessa-products-management-api.herokuapp.com/swagger/)
+- [Documentação da API com Redoc](https://fbessa-products-management-api.herokuapp.com/redoc/)
+
+---
+
+## This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.1.
 
 ## Development server
 
