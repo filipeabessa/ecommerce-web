@@ -8,19 +8,19 @@ import { SignInModel } from '../models/auth.models';
   providedIn: 'root',
 })
 export class AuthService {
-  authUrl = `${environment.authURL}`;
+  authURL = `${environment.authURL}`;
   headers = new HttpHeaders({
     Accept: 'application/json',
     'Content-Type': 'application/x-www-form-urlencoded',
     Authorization:
-      'Basic UDBUQUhkNHd2WkpYbkRQSldKb0MzN3ZVYjRZMG5qTXZyd1FKbzF5b0NWVUtYM01UeUc1cUl2VU5FRHllVUlZMGM0eUNmVmdqdXVGdHVWbGhyc0RBWnoyRkoxajV2NGVvOHdQQVRJU3BJN0FhS0RBWmprVVZIbWMxMDRnU3JnQVo=',
+      'Basic RmxsTUV6VllMM2diTEZFbVdmdFZjeG9PVlVmVzlvRTh4Q3hVb3JOcDpQMFRBSGQ0d3ZaSlhuRFBKV0pvQzM3dlViNFkwbmpNdnJ3UUpvMXlvQ1ZVS1gzTVR5RzVxSXZVTkVEeWVVSVkwYzR5Q2ZWZ2p1dUZ0dVZsaHJzREFaejJGSjFqNXY0ZW84d1BBVElTcEk3QWFLREFaamtVVkhtYzEwNGdTcmdBWg==',
   });
 
   constructor(private httpClient: HttpClient) {}
 
   signIn(signIn: SignInModel): Observable<any> {
     return this.httpClient.post(
-      `${this.authUrl}`,
+      this.authURL,
       `grant_type=password&username=${signIn.username}&password=${signIn.password}`,
       { headers: this.headers }
     );
