@@ -9,9 +9,7 @@ import {
   retrieveProductRequest,
 } from '../../store/products.actions';
 import { ProductsState, retrieveProduct } from '../../store/products.reducer';
-import { AuthState, getToken } from 'src/app/auth/store/auth.reducer';
 import { Observable, Subscription } from 'rxjs';
-import { checkForToken } from 'src/app/auth/store/auth.actions';
 
 @Component({
   selector: 'app-product-detail-container',
@@ -21,42 +19,24 @@ import { checkForToken } from 'src/app/auth/store/auth.actions';
 })
 export class ProductDetailContainerComponent implements OnInit {
   product$: Observable<ProductModel | null>;
-  token: string | null;
-  token$: Observable<string | null>;
-  getTokenSubscription: Subscription;
+  token: string | null = localStorage.getItem('token');
   productId: number = Number(this.route.snapshot.paramMap.get('id'));
 
   constructor(
     public router: Router,
     private route: ActivatedRoute,
-    private productsStore: Store<ProductsState>,
-    private authStore: Store<AuthState>
+    private productsStore: Store<ProductsState>
   ) {}
 
   ngOnInit() {
-    this.token$ = this.authStore.pipe(select(getToken));
     this.product$ = this.productsStore.pipe(select(retrieveProduct));
-    this.authStore.dispatch(checkForToken());
 
-    this.getTokenSubscription = this.token$.subscribe((token) => {
-      if (token) {
-        this.token = token;
-        if (this.productId) {
-          this.productsStore.dispatch(
-            retrieveProductRequest({
-              id: this.productId,
-              token: token,
-            })
-          );
-        }
-      } else if (token === undefined) {
-        this.router.navigate(['/signin']);
-      }
-    });
-  }
-
-  ngOnDestroy() {
-    this.getTokenSubscription.unsubscribe();
+    this.productsStore.dispatch(
+      retrieveProductRequest({
+        id: this.productId,
+        token: this.token,
+      })
+    );
   }
 
   onDeleteProduct() {

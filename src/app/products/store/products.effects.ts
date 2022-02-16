@@ -50,7 +50,8 @@ export class ProductsEffects {
           }),
           catchError((error) => {
             if (error.status === 401) {
-              this.alertsService.errorSnackbar('Usuário não autenticado');
+              this.alertsService.errorSnackbar('Usuário não autorizado');
+              this.router.navigate(['/signin']);
             }
             return of(createProductError({ httpError: error }));
           })
@@ -76,6 +77,7 @@ export class ProductsEffects {
             catchError((error) => {
               if (error.status === 401) {
                 this.alertsService.errorSnackbar('Usuário não autorizado');
+                this.router.navigate(['/signin']);
               }
               return of(retrieveProductError({ httpError: error }));
             })
@@ -97,6 +99,7 @@ export class ProductsEffects {
           catchError((error) => {
             if (error.status === 401) {
               this.alertsService.errorSnackbar('Usuário não autorizado');
+              this.router.navigate(['/signin']);
             }
             return of(getProductsError({ httpError: error }));
           })
@@ -120,6 +123,7 @@ export class ProductsEffects {
           catchError((error) => {
             if (error.status === 401) {
               this.alertsService.errorSnackbar('Usuário não autenticado');
+              this.router.navigate(['/signin']);
             }
             return of(editProductError({ httpError: error }));
           })

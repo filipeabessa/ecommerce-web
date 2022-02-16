@@ -14,9 +14,7 @@ import { createProductRequest } from '../../store/products.actions';
   styleUrls: ['./create-product-container.component.scss'],
 })
 export class CreateProductContainerComponent implements OnInit {
-  token: string | null;
-  token$: Observable<string | null>;
-  getTokenSubscription: Subscription;
+  token: string | null = localStorage.getItem('token');
 
   constructor(
     public router: Router,
@@ -31,20 +29,7 @@ export class CreateProductContainerComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.token$ = this.authStore.pipe(select(getToken));
-    this.authStore.dispatch(checkForToken());
-
-    this.getTokenSubscription = this.token$.subscribe((token) => {
-      if (token !== null) {
-        this.token = token;
-      } else if (token === undefined) {
-        this.router.navigate(['/signin']);
-      }
-    });
-  }
-
-  ngOnDestroy() {
-    this.getTokenSubscription.unsubscribe();
+    console.log('token', this.token);
   }
 
   onCreateProduct() {

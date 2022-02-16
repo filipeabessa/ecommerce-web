@@ -35,7 +35,7 @@ export interface AuthState {
 }
 
 const initialState: AuthState = {
-  token: null,
+  token: '',
   isAuthenticated: false,
   requests: {
     signInRequestState: new NotAskedRequest(),

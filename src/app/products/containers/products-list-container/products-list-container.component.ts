@@ -21,11 +21,9 @@ import { RequestState } from 'src/app/models/request-state.model';
   styleUrls: ['./products-list-container.component.scss'],
 })
 export class ProductsListContainerComponent implements OnInit {
-  products$: Observable<Array<ProductModel>>;
-  token$: Observable<string | null>;
-  getProductsRequestState$: Observable<RequestState>;
+  token: string | null = localStorage.getItem('token');
+  products$: Observable<ProductModel[]>;
   getProductsSubscription: Subscription;
-  getTokenSubscription: Subscription;
 
   constructor(
     private productsStore: Store<ProductsState>,
@@ -35,30 +33,13 @@ export class ProductsListContainerComponent implements OnInit {
 
   ngOnInit() {
     this.products$ = this.productsStore.pipe(select(getProducts));
-    this.token$ = this.authStore.pipe(select(getToken));
-    this.getProductsRequestState$ = this.productsStore.pipe(
-      select(getProductsRequestState)
+
+    this.productsStore.dispatch(
+      getProductsRequest({
+        token: this.token,
+      })
     );
-
-    this.authStore.dispatch(checkForToken());
-
-    this.getTokenSubscription = this.token$.subscribe((token) => {
-      if (token) {
-        this.productsStore.dispatch(
-          getProductsRequest({
-            token: token,
-          })
-        );
-      }
-    });
-    this.getProductsRequestState$.subscribe((state) => {
-      if (state.isFailed()) {
-        this.router.navigate(['/signin']);
-      }
-    });
   }
 
-  ngOnDestroy() {
-    this.getTokenSubscription.unsubscribe();
-  }
+  ngOnDestroy() {}
 }
