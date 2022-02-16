@@ -5,8 +5,13 @@
   margin: 0 100px;
 
   > .content {
-    > .search-input {
-      width: 300px;
+    > .search-fields-wrapper {
+      display: flex;
+      flex-direction: row;
+      > .search-field {
+        width: 300px;
+        margin-right: 20px;
+      }
     }
 
     > .products-list {

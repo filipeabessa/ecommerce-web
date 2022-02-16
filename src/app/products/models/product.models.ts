@@ -15,7 +15,7 @@ export interface EditProductRequestParams {
   editParams: EditProductParams;
 }
 export interface GetProductsParams {
-  price?: number;
+  price?: string;
   title?: string;
   token?: string | null;
 }

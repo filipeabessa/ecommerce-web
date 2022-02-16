@@ -19,7 +19,7 @@ import {
   createProductSuccess,
   createProductError,
 } from './products.actions';
-import { map, catchError, exhaustMap, tap } from 'rxjs/operators';
+import { map, catchError, exhaustMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import {
   CreateProductParams,
@@ -52,6 +52,8 @@ export class ProductsEffects {
             if (error.status === 401) {
               this.alertsService.errorSnackbar('Usuário não autorizado');
               this.router.navigate(['/signin']);
+            } else {
+              this.alertsService.errorSnackbar('Erro ao tentar criar produto');
             }
             return of(createProductError({ httpError: error }));
           })
@@ -78,6 +80,8 @@ export class ProductsEffects {
               if (error.status === 401) {
                 this.alertsService.errorSnackbar('Usuário não autorizado');
                 this.router.navigate(['/signin']);
+              } else {
+                this.alertsService.errorSnackbar('Erro ao buscar produto');
               }
               return of(retrieveProductError({ httpError: error }));
             })
@@ -100,7 +104,10 @@ export class ProductsEffects {
             if (error.status === 401) {
               this.alertsService.errorSnackbar('Usuário não autorizado');
               this.router.navigate(['/signin']);
+            } else {
+              this.alertsService.errorSnackbar('Erro ao buscar produtos');
             }
+
             return of(getProductsError({ httpError: error }));
           })
         )
@@ -124,6 +131,8 @@ export class ProductsEffects {
             if (error.status === 401) {
               this.alertsService.errorSnackbar('Usuário não autenticado');
               this.router.navigate(['/signin']);
+            } else {
+              this.alertsService.errorSnackbar('Erro ao tentar editar produto');
             }
             return of(editProductError({ httpError: error }));
           })
@@ -144,6 +153,10 @@ export class ProductsEffects {
           catchError((error) => {
             if (error.status === 401) {
               this.alertsService.errorSnackbar('Usuário não autenticado');
+            } else {
+              this.alertsService.errorSnackbar(
+                'Erro ao tentar deletar produto'
+              );
             }
             return of(deleteProductError({ httpError: error }));
           })

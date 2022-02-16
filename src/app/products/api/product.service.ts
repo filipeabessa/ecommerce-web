@@ -48,15 +48,16 @@ export class ProductService {
 
   getProducts(getProductParams: GetProductsParams): Observable<ProductModel[]> {
     let params = new HttpParams();
-    if (getProductParams?.price !== undefined) {
-      params.set('price', getProductParams.price.toString());
-    }
-    if (getProductParams?.title !== undefined) {
-      params.set('title', getProductParams.title.toString());
+    if (getProductParams.price !== '' && getProductParams.title !== '') {
+      params = params.append('price', getProductParams.price!.toString());
+    } else if (getProductParams.price !== '') {
+      params = params.append('price', getProductParams.price!.toString());
+    } else if (getProductParams.title !== '') {
+      params = params.append('title', getProductParams.title!.toString());
     }
 
     return this.httpClient.get<ProductModel[]>(`${this.apiUrl}/products`, {
-      params,
+      params: params,
       headers: { Authorization: `Bearer ${getProductParams.token}` },
     });
   }

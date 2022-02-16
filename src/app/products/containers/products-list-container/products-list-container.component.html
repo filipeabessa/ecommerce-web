@@ -1,9 +1,19 @@
 <mat-card class="products-list-container">
   <mat-card-content class="content">
-    <mat-form-field class="search-input">
-      <mat-label>Buscar produto</mat-label>
-      <input matInput type="text" />
-    </mat-form-field>
+    <form
+      class="search-fields-wrapper"
+      (change)="onSearch()"
+      [formGroup]="searchFormGroup"
+    >
+      <mat-form-field class="search-field">
+        <mat-label>Buscar produto pelo nome</mat-label>
+        <input matInput type="text" name="title" formControlName="title" />
+      </mat-form-field>
+      <mat-form-field class="search-field">
+        <mat-label>Buscar produto pelo preço</mat-label>
+        <input matInput type="number" name="price" formControlName="price" />
+      </mat-form-field>
+    </form>
     <div *ngIf="products$ | async; else loading" class="products-list">
       <app-product-card
         *ngFor="let product of products$ | async"

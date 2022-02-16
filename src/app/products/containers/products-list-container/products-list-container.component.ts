@@ -14,6 +14,7 @@ import { ProductModel } from '../../models/product.models';
 import { AuthState, getToken } from 'src/app/auth/store/auth.reducer';
 import { Router } from '@angular/router';
 import { RequestState } from 'src/app/models/request-state.model';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-products-list-container',
@@ -25,11 +26,12 @@ export class ProductsListContainerComponent implements OnInit {
   products$: Observable<ProductModel[]>;
   getProductsSubscription: Subscription;
 
-  constructor(
-    private productsStore: Store<ProductsState>,
-    private authStore: Store<AuthState>,
-    private router: Router
-  ) {}
+  searchFormGroup = new FormGroup({
+    title: new FormControl(''),
+    price: new FormControl(''),
+  });
+
+  constructor(private productsStore: Store<ProductsState>) {}
 
   ngOnInit() {
     this.products$ = this.productsStore.pipe(select(getProducts));
@@ -39,6 +41,21 @@ export class ProductsListContainerComponent implements OnInit {
         token: this.token,
       })
     );
+    this.products$.subscribe();
+    this.onSearch();
+  }
+
+  onSearch() {
+    this.searchFormGroup.valueChanges.subscribe((value) => {
+      const { title, price } = value;
+      this.productsStore.dispatch(
+        getProductsRequest({
+          token: this.token,
+          title,
+          price,
+        })
+      );
+    });
   }
 
   ngOnDestroy() {}
