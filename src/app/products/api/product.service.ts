@@ -27,7 +27,7 @@ interface ProductEditParams {
   providedIn: 'root',
 })
 export class ProductService {
-  apiUrl = `${environment.API}`;
+  apiUrl = `${environment.apiURL}`;
 
   constructor(private httpClient: HttpClient) {}
   createProduct(

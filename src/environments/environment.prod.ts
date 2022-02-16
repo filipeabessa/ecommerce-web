@@ -1,5 +1,7 @@
+const baseURL = 'https://fbessa-products-management-api.herokuapp.com/';
+
 export const environment = {
   production: true,
-  authentication: 'http://localhost:8000',
-  API: 'http://localhost:8000/api/v1',
+  authURL: `${baseURL} + 'o/token/'`,
+  apiURL: `${baseURL} + 'api/v1'`,
 };

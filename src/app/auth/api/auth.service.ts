@@ -8,12 +8,12 @@ import { SignInModel } from '../models/auth.models';
   providedIn: 'root',
 })
 export class AuthService {
-  apiUrl = `${environment.authentication}`;
+  apiUrl = `${environment.authURL}`;
   headers = new HttpHeaders({
     Accept: 'application/json',
     'Content-Type': 'application/x-www-form-urlencoded',
     Authorization:
-      'Basic TkYxWlZ0OXJqQnlra2s5ZnBGMEh1QmgzcHU2ZjJXRFhLSWdYazhDazpPbmRKV1lqYlc0a2tsQzdibW5mSDRLU1E2NkNjU2lOSDZyRUhHcTZ6cXQ4R0lLRU92cUZrdGdmNUpNQ2I3R2VZUFkycGQ4STBNeFhjb1RtdzhSZnpQVXkxYmlNMldzS3BhWHBtaTNqczF1ZWhnWlI1T1RrdGt4TDdBV1hRNlV4dQ==',
+      'Basic UDBUQUhkNHd2WkpYbkRQSldKb0MzN3ZVYjRZMG5qTXZyd1FKbzF5b0NWVUtYM01UeUc1cUl2VU5FRHllVUlZMGM0eUNmVmdqdXVGdHVWbGhyc0RBWnoyRkoxajV2NGVvOHdQQVRJU3BJN0FhS0RBWmprVVZIbWMxMDRnU3JnQVo=',
   });
 
   constructor(private httpClient: HttpClient) {}
